@@ -7,9 +7,9 @@ import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
 
-import uk.ac.soton.ldanalytics.sparql2stream.model.RdfTableMapping;
-import uk.ac.soton.ldanalytics.sparql2stream.model.SparqlOpVisitor;
-import uk.ac.soton.ldanalytics.sparql2stream.util.SQLFormatter;
+import uk.ac.soton.ldanalytics.sparql2sql.model.RdfTableMapping;
+import uk.ac.soton.ldanalytics.sparql2sql.model.SparqlOpVisitor;
+import uk.ac.soton.ldanalytics.sparql2sql.util.SQLFormatter;
 
 import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryFactory;
