@@ -1,8 +1,14 @@
 package uk.ac.soton.ldanalytics.sparql2stream.cep;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Random;
+import java.util.Map.Entry;
 
 import com.espertech.esper.client.EPServiceProvider;
 import com.espertech.esper.client.EPServiceProviderManager;
@@ -11,32 +17,52 @@ import com.espertech.esper.client.EPStatement;
 public class CepEngine {
 	public static void main(String[] args) {
 		EPServiceProvider epService = EPServiceProviderManager.getProvider("engine_test");
-		Map<String, Object> definition = new LinkedHashMap<String, Object>();
-        definition.put("sensor", String.class);
-        definition.put("temperature", double.class);
-        epService.getEPAdministrator().getConfiguration().addEventType("SensorEvent", definition);
-        String stmt = "select * from SensorEvent.win:keepall()";
+		String streamName = "_HP001";
+		ObjectFormat objectFormat = new ObjectFormat();
+		Map<String,Object> definition = objectFormat.getDefinitionMap(streamName);
+        epService.getEPAdministrator().getConfiguration().addEventType(streamName, definition);
+        String stmt = "select * from "+streamName+".win:keepall()";
 //        String stmt = "select * from SensorEvent.win:time_batch(1 sec)";
         EPStatement statement = epService.getEPAdministrator().createEPL(stmt);
         statement.addListener(new QueryListener());
-        Random random = new Random();
-        for (int i = 0; i < 1000; i++)
-        {
-            double temperature = random.nextDouble() * 10 + 80;
-            String sensor = "s"+random.nextInt(10);
-
-            Map<String, Object> data = new LinkedHashMap<String, Object>();
-            data.put("temperature", temperature);
-            data.put("sensor", sensor);
-
-            epService.getEPRuntime().sendEvent(data, "SensorEvent");
-            
-            try {
+        
+        try {
+	        BufferedReader br = new BufferedReader(new FileReader("samples/"+streamName+".csv"));
+	        br.readLine();//header
+	        String line = "";
+	        while((line=br.readLine())!=null) {
+	        	String[] parts = line.split(",");
+	            Map<String, Object> data = new LinkedHashMap<String, Object>();
+	            int i=0;
+	            for(Entry<String,Object> row:definition.entrySet()) {
+	            	data.put(row.getKey(), convertStrToObject(parts[i++],row.getValue()));
+	            }
+	
+	            epService.getEPRuntime().sendEvent(data, streamName);
 				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
+	        }
+	        br.close();
+        }catch(IOException e) {
+        	e.printStackTrace();
+        } catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private static Object convertStrToObject(String val, Object className) {
+		Object object = null;
+		if(className.equals(String.class)) {
+			object = val;
+		} else if(className.equals(Float.class)) {
+			object = Float.parseFloat(val);
+		} else if(className.equals(Timestamp.class)) {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			try {
+				object = new Timestamp(sdf.parse(val).getTime());
+			} catch (ParseException e) {
 				e.printStackTrace();
 			}
-        }
+		}
+		return object;
 	}
 }
