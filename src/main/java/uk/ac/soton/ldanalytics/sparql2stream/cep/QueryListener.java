@@ -9,7 +9,7 @@ public class QueryListener implements UpdateListener {
 	public void update(EventBean[] newEvents, EventBean[] oldEvents) {
 		// TODO Auto-generated method stub
 		if(newEvents.length>0) {
-			System.out.println(newEvents[0].get("TIME"));
+			System.out.println(newEvents[0].get("value")+","+newEvents[0].get("sensor"));
 		}
 	}
 

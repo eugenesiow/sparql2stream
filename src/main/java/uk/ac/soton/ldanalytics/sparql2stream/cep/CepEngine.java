@@ -21,8 +21,12 @@ public class CepEngine {
 		ObjectFormat objectFormat = new ObjectFormat();
 		Map<String,Object> definition = objectFormat.getDefinitionMap(streamName);
         epService.getEPAdministrator().getConfiguration().addEventType(streamName, definition);
-        String stmt = "select * from "+streamName+".win:keepall()";
-//        String stmt = "select * from SensorEvent.win:time_batch(1 sec)";
+        String stmt = "    SELECT\n" + 
+        		"        DISTINCT 'http://knoesis.wright.edu/ssw/System_HP001' AS sensor ,\n" + 
+        		"        _HP001.Precipitation AS value ,\n" + 
+        		"        'http://knoesis.wright.edu/ssw/ont/weather.owl#centimeters' AS uom \n" + 
+        		"    FROM\n" + 
+        		"        _HP001.win:time(1 hour)  ";
         EPStatement statement = epService.getEPAdministrator().createEPL(stmt);
         statement.addListener(new QueryListener());
         
