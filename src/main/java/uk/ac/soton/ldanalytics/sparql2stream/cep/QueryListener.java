@@ -1,5 +1,8 @@
 package uk.ac.soton.ldanalytics.sparql2stream.cep;
 
+import java.util.Map;
+import java.util.Map.Entry;
+
 import com.espertech.esper.client.EventBean;
 import com.espertech.esper.client.UpdateListener;
 
@@ -7,9 +10,11 @@ public class QueryListener implements UpdateListener {
 
 	@Override
 	public void update(EventBean[] newEvents, EventBean[] oldEvents) {
-		// TODO Auto-generated method stub
 		if(newEvents.length>0) {
-			System.out.println(newEvents[0].get("value")+","+newEvents[0].get("sensor"));
+			for(Object map:((Map)newEvents[0].getUnderlying()).entrySet()) {
+				Entry entry = ((Entry)map);
+				System.out.println(entry.getKey()+":"+entry.getValue());
+			}
 		}
 	}
 
