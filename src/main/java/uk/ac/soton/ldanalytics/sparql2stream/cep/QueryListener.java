@@ -11,9 +11,9 @@ public class QueryListener implements UpdateListener {
 	@Override
 	public void update(EventBean[] newEvents, EventBean[] oldEvents) {
 		if(newEvents.length>0) {
-			for(Object map:((Map)newEvents[0].getUnderlying()).entrySet()) {
-				Entry entry = ((Entry)map);
-				System.out.println(entry.getKey()+":"+entry.getValue());
+			for(Object map:((Map<?, ?>)newEvents[0].getUnderlying()).entrySet()) {
+				Entry<?, ?> entry = ((Entry<?, ?>)map);
+//				System.out.println(entry.getKey()+":"+entry.getValue());
 			}
 		}
 	}

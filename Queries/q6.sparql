@@ -1,0 +1,24 @@
+PREFIX om-owl: <http://knoesis.wright.edu/ssw/ont/sensor-observation.owl#>
+PREFIX weather: <http://knoesis.wright.edu/ssw/ont/weather.owl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl-time: <http://www.w3.org/2006/time#>
+
+SELECT ?sensor
+FROM NAMED STREAM <http://www.cwi.nl/SRBench/observations> [RANGE 1h TUMBLING]
+WHERE {
+  { ?observation om-owl:procedure ?sensor ;
+                 a weather:VisibilityObservation ;
+                 om-owl:result [om-owl:floatValue ?value ].
+    FILTER ( ?value < "10"^^xsd:float)  # centimeters
+  }
+  UNION
+  { ?observation om-owl:procedure ?sensor ;
+                 a weather:RainfallObservation ;
+                 om-owl:result [om-owl:floatValue ?value ].
+    FILTER ( ?value > "30"^^xsd:float)  # centimeters
+  }
+  UNION
+  { ?observation om-owl:procedure ?sensor ;
+                 a weather:SnowfallObservation .
+  }
+}

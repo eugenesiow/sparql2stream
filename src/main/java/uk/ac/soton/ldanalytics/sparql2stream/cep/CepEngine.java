@@ -30,6 +30,8 @@ public class CepEngine {
         EPStatement statement = epService.getEPAdministrator().createEPL(stmt);
         statement.addListener(new QueryListener());
         
+        long startTime = System.currentTimeMillis();
+        int counter = 0;
         try {
 	        BufferedReader br = new BufferedReader(new FileReader("samples/"+streamName+".csv"));
 	        br.readLine();//header
@@ -41,15 +43,19 @@ public class CepEngine {
 	            for(Entry<String,Object> row:definition.entrySet()) {
 	            	data.put(row.getKey(), convertStrToObject(parts[i++],row.getValue()));
 	            }
-	
+	            counter++;
+	            	
 	            epService.getEPRuntime().sendEvent(data, streamName);
-				Thread.sleep(1000);
+//				Thread.sleep(1000);
 	        }
+	        long timeTaken = System.currentTimeMillis() - startTime;
+            System.out.println(timeTaken);
+            System.out.println(counter);
 	        br.close();
         }catch(IOException e) {
         	e.printStackTrace();
-        } catch (InterruptedException e) {
-			e.printStackTrace();
+//        } catch (InterruptedException e) {
+//			e.printStackTrace();
 		}
 	}
 

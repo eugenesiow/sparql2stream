@@ -1,8 +1,8 @@
 Time,time
 Winddirection,float
-Airtemperature,float
-Relativehumidity,float
+AirTemperature,float
+RelativeHumidity,float
 Pressure,float
 Precipitation,float
-Windspeed,float
+WindSpeed,float
 Dewpoint,float

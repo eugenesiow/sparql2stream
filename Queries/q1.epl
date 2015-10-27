@@ -1,0 +1,6 @@
+    SELECT
+        DISTINCT 'http://knoesis.wright.edu/ssw/System_HP001' AS sensor ,
+        _HP001.Precipitation AS value ,
+        'http://knoesis.wright.edu/ssw/ont/weather.owl#centimeters' AS uom 
+    FROM
+        _HP001.win:time(1 hour)

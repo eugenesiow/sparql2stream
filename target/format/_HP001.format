@@ -1,0 +1,8 @@
+Time,time
+Winddirection,float
+Airtemperature,float
+Relativehumidity,float
+Pressure,float
+Precipitation,float
+WindSpeed,float
+Dewpoint,float

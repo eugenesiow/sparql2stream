@@ -1,0 +1,8 @@
+    SELECT
+        'http://knoesis.wright.edu/ssw/System_HP001' AS sensor ,
+        avg(_HP001.WindSpeed) AS averageWindSpeed ,
+        avg(_HP001.AirTemperature) AS averageTemperature 
+    FROM
+        _HP001.win:time(1 hour) 
+    WHERE
+        _HP001.AirTemperature>32.0 

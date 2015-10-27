@@ -15,24 +15,40 @@ import uk.ac.soton.ldanalytics.sparql2stream.parser.StreamQueryFactory;
 
 public class test {
 	public static void main(String[] args) {
+//		String queryStr = "PREFIX om-owl: <http://knoesis.wright.edu/ssw/ont/sensor-observation.owl#>\n" + 
+//				"PREFIX weather: <http://knoesis.wright.edu/ssw/ont/weather.owl#>\n" + 
+//				"\n" + 
+//				"SELECT DISTINCT ?sensor ?value ?uom\n" + 
+//				"FROM NAMED STREAM <http://www.cwi.nl/SRBench/observations> [RANGE 1h STEP 10m]\n" +
+////				"FROM NAMED STREAM <http://www.cwi.nl/SRBench/observations>\n" +
+//				"WHERE {\n" + 
+//				"  ?observation om-owl:procedure ?sensor ;\n" + 
+//				"               a weather:RainfallObservation ;\n" + 
+//				"               om-owl:result ?result .\n" + 
+//				"  ?result om-owl:floatValue ?value ;\n" + 
+//				"          om-owl:uom ?uom .\n" + 
+//				"}";
+		
 		String queryStr = "PREFIX om-owl: <http://knoesis.wright.edu/ssw/ont/sensor-observation.owl#>\n" + 
 				"PREFIX weather: <http://knoesis.wright.edu/ssw/ont/weather.owl#>\n" + 
+				"PREFIX wgs84_pos: <http://www.w3.org/2003/01/geo/wgs84_pos#>\n" + 
+				"PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" + 
+				"PREFIX owl-time: <http://www.w3.org/2006/time#>\n" + 
 				"\n" + 
-				"SELECT DISTINCT ?sensor ?value ?uom\n" + 
-				"FROM NAMED STREAM <http://www.cwi.nl/SRBench/observations> [RANGE 1h STEP 10m]\n" +
-//				"FROM NAMED STREAM <http://www.cwi.nl/SRBench/observations>\n" +
+				"SELECT ( MIN(?temperature) AS ?minTemperature ) ( MAX(?temperature) AS ?maxTemperature )\n" + 
 				"WHERE {\n" + 
-				"  ?observation om-owl:procedure ?sensor ;\n" + 
-				"               a weather:RainfallObservation ;\n" + 
-				"               om-owl:result ?result .\n" + 
-				"  ?result om-owl:floatValue ?value ;\n" + 
-				"          om-owl:uom ?uom .\n" + 
-				"}";
+				"    ?sensor om-owl:processLocation ?sensorLocation ;\n" + 
+				"          om-owl:generatedObservation ?observation .\n" + 
+				"    ?sensorLocation wgs84_pos:alt \"5350\"^^xsd:float ;\n" + 
+				"                  wgs84_pos:lat \"40.82944\"^^xsd:float ;\n" + 
+				"                  wgs84_pos:long \"-111.88222\"^^xsd:float .\n" + 
+				"}\n" + 
+				"GROUP BY ?sensor";
 		
 		RdfTableMapping mapping = new RdfTableMapping();
 //		mapping.loadMapping("mapping/4UT01.nt");
-//		mapping.loadMapping("/Users/eugene/Downloads/knoesis_observations_map_meta/4UT01.nt");
-		mapping.loadMapping("/Users/eugene/Downloads/knoesis_observations_ike_map_meta/HP001.nt");
+		mapping.loadMapping("/Users/eugene/Downloads/knoesis_observations_map_meta/4UT01.nt");
+//		mapping.loadMapping("/Users/eugene/Downloads/knoesis_observations_ike_map_meta/HP001.nt");
 //		mapping.loadMapping("mapping/smarthome_environment.nt");
 //		mapping.loadMapping("mapping/smarthome_sensors.nt");
 //		mapping.loadMapping("mapping/smarthome_meter.nt");

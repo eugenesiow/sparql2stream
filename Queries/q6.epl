@@ -1,0 +1,9 @@
+    SELECT
+        'http://knoesis.wright.edu/ssw/System_HP001' AS sensor 
+    FROM
+        (SELECT
+            * 
+        FROM
+            _HP001  
+        WHERE
+            _HP001.Precipitation>30.0)   
