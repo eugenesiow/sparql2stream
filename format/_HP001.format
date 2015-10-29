@@ -1,4 +1,4 @@
-Time,time
+time,time
 Winddirection,float
 AirTemperature,float
 RelativeHumidity,float

@@ -21,7 +21,7 @@ import com.espertech.esper.client.EPStatement;
 
 public class CepEngineRandom {
 	public static void main(String[] args) {
-		final long MAX_EVENTS = 100;
+		int MAX_EVENTS = 100;
 		final int delay = 1;
 		
 		EPServiceProvider epService = EPServiceProviderManager.getProvider("engine_test");
@@ -39,6 +39,9 @@ public class CepEngineRandom {
         	runTime = Long.parseLong(args[1]);
         }
         runTime *= 1000; //convert to ms
+        if(args.length>2) {
+        	MAX_EVENTS = Integer.parseInt(args[2]);
+        }
         
 		try {
 			if(!filename.equals("blank")) {

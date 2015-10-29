@@ -36,19 +36,23 @@ public class test {
 				"PREFIX owl-time: <http://www.w3.org/2006/time#>\n" + 
 				"\n" + 
 				"SELECT ( MIN(?temperature) AS ?minTemperature ) ( MAX(?temperature) AS ?maxTemperature )\n" + 
+				"    FROM NAMED STREAM <http://www.cwi.nl/SRBench/observations> [RANGE 1d TUMBLING]\n" + 
 				"WHERE {\n" + 
-				"    ?sensor om-owl:processLocation ?sensorLocation ;\n" + 
+				"  	?sensor om-owl:processLocation ?sensorLocation ;\n" + 
 				"          om-owl:generatedObservation ?observation .\n" + 
-				"    ?sensorLocation wgs84_pos:alt \"5350\"^^xsd:float ;\n" + 
-				"                  wgs84_pos:lat \"40.82944\"^^xsd:float ;\n" + 
-				"                  wgs84_pos:long \"-111.88222\"^^xsd:float .\n" + 
+				"        ?sensorLocation wgs84_pos:alt \"6300\"^^xsd:float ;\n" + 
+				"                      wgs84_pos:lat \"32.892\"^^xsd:float ;\n" + 
+				"                      wgs84_pos:long \"-116.4199\"^^xsd:float .\n" + 
+				"  	?observation om-owl:observedProperty weather:_AirTemperature ;\n" + 
+				"               om-owl:result [ om-owl:floatValue ?temperature ] .\n" + 
 				"}\n" + 
 				"GROUP BY ?sensor";
+//		System.out.println(queryStr);
 		
 		RdfTableMapping mapping = new RdfTableMapping();
 //		mapping.loadMapping("mapping/4UT01.nt");
-		mapping.loadMapping("/Users/eugene/Downloads/knoesis_observations_map_meta/4UT01.nt");
-//		mapping.loadMapping("/Users/eugene/Downloads/knoesis_observations_ike_map_meta/HP001.nt");
+//		mapping.loadMapping("/Users/eugene/Downloads/knoesis_observations_map_meta/4UT01.nt");
+		mapping.loadMapping("/Users/eugene/Downloads/knoesis_observations_ike_map_meta/HP001.nt");
 //		mapping.loadMapping("mapping/smarthome_environment.nt");
 //		mapping.loadMapping("mapping/smarthome_sensors.nt");
 //		mapping.loadMapping("mapping/smarthome_meter.nt");

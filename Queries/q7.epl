@@ -1,0 +1,6 @@
+    SELECT
+        'http://knoesis.wright.edu/ssw/System_HP001' AS sensor 
+    FROM
+        _HP001.win:time_batch(1 hour)  
+    HAVING
+        count(_HP001.time)=0 

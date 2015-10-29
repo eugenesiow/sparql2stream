@@ -3,9 +3,11 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX owl-time: <http://www.w3.org/2006/time#>
 
 SELECT ?sensor
-FROM NAMED STREAM <http://www.cwi.nl/SRBench/observations> [RANGE 1h STEP 10m]
+FROM NAMED STREAM <http://www.cwi.nl/SRBench/observations> [RANGE 1h TUMBLING]
 WHERE {
-    ?sensor om-owl:generatedObservation ?observation.
+	?sensor om-owl:generatedObservation ?observation.
+	?observation om-owl:samplingTime ?instant .
+	?instant owl-time:inXSDDateTime ?time .
 }
 GROUP BY ?sensor
-HAVING (count(?observation) = 0)
+HAVING (count(?time) = 0)
