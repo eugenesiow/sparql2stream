@@ -29,34 +29,98 @@ public class test {
 //				"          om-owl:uom ?uom .\n" + 
 //				"}";
 		
-		String queryStr = "PREFIX om-owl: <http://knoesis.wright.edu/ssw/ont/sensor-observation.owl#>\n" + 
-				"PREFIX weather: <http://knoesis.wright.edu/ssw/ont/weather.owl#>\n" + 
-				"PREFIX wgs84_pos: <http://www.w3.org/2003/01/geo/wgs84_pos#>\n" + 
-				"PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" + 
-				"PREFIX owl-time: <http://www.w3.org/2006/time#>\n" + 
+//		String queryStr = "PREFIX om-owl: <http://knoesis.wright.edu/ssw/ont/sensor-observation.owl#>\n" + 
+//				"PREFIX weather: <http://knoesis.wright.edu/ssw/ont/weather.owl#>\n" + 
+//				"PREFIX wgs84_pos: <http://www.w3.org/2003/01/geo/wgs84_pos#>\n" + 
+//				"PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" + 
+//				"PREFIX owl-time: <http://www.w3.org/2006/time#>\n" + 
+//				"\n" + 
+//				"SELECT ( MIN(?temperature) AS ?minTemperature ) ( MAX(?temperature) AS ?maxTemperature )\n" + 
+//				"    FROM NAMED STREAM <http://www.cwi.nl/SRBench/observations> [RANGE 1d TUMBLING]\n" + 
+//				"WHERE {\n" + 
+//				"  	?sensor om-owl:processLocation ?sensorLocation ;\n" + 
+//				"          om-owl:generatedObservation ?observation .\n" + 
+//				"        ?sensorLocation wgs84_pos:alt \"6300\"^^xsd:float ;\n" + 
+//				"                      wgs84_pos:lat \"32.892\"^^xsd:float ;\n" + 
+//				"                      wgs84_pos:long \"-116.4199\"^^xsd:float .\n" + 
+//				"  	?observation om-owl:observedProperty weather:_AirTemperature ;\n" + 
+//				"               om-owl:result [ om-owl:floatValue ?temperature ] .\n" + 
+//				"}\n" + 
+//				"GROUP BY ?sensor";
+		
+//		String queryStr = "PREFIX  ssn:  <http://purl.oclc.org/NET/ssnx/ssn#>\n" + 
+//				"PREFIX  rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" + 
+//				"PREFIX  iot:  <http://purl.oclc.org/NET/iot#>\n" + 
+//				"\n" + 
+//				"SELECT (?sensor as ?roomName) (sum(?motionOrNoMotion) as ?totalMotion)\n" + 
+//				"FROM NAMED STREAM <http://iot.soton.ac.uk/smarthome/motion> [RANGE 10s TUMBLING]\n" + 
+//				"WHERE {\n" + 
+//				"    ?obsval a iot:MotionValue;\n" + 
+//				"      iot:hasQuantityValue ?motionOrNoMotion.\n" + 
+//				"    ?snout ssn:hasValue ?obsval.\n" + 
+//				"    ?obs ssn:observationResult ?snout.\n" + 
+//				"    ?obs ssn:observedBy ?sensor.\n" + 
+//				"} GROUP BY ?sensor\n" + 
+//				"HAVING ( sum(?motionOrNoMotion) > 0 )";
+		
+//		String queryStr = "PREFIX  ssn:  <http://purl.oclc.org/NET/ssnx/ssn#>\n" + 
+//				"PREFIX  rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" + 
+//				"PREFIX  iot:  <http://purl.oclc.org/NET/iot#>\n" + 
+//				"\n" + 
+//				"SELECT (?meter as ?meterName) (avg(?meterval) as ?averagePower)\n" + 
+//				"FROM NAMED STREAM <http://iot.soton.ac.uk/smarthome/meter> [RANGE 30s STEP]\n" + 
+//				"WHERE {\n" + 
+//				"	?meterobs ssn:observationResult ?metersnout.\n" + 
+//				"    ?metersnout ssn:hasValue ?meterobsval.\n" + 
+//				"    ?meterobsval a iot:EnergyValue; \n" + 
+//				"    	iot:hasQuantityValue ?meterval.\n" + 
+//				"    ?meterobs ssn:observedBy ?meter.\n" + 
+//				"} GROUP BY ?meter\n" + 
+//				"HAVING ( avg(?meterval) > 0 )";
+		
+		String queryStr = "PREFIX  ssn:  <http://purl.oclc.org/NET/ssnx/ssn#>\n" + 
+				"PREFIX  rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" + 
+				"PREFIX  iot:  <http://purl.oclc.org/NET/iot#>\n" + 
+				"PREFIX iotsn: <http://iot.soton.ac.uk/smarthome/sensor#>\n" + 
 				"\n" + 
-				"SELECT ( MIN(?temperature) AS ?minTemperature ) ( MAX(?temperature) AS ?maxTemperature )\n" + 
-				"    FROM NAMED STREAM <http://www.cwi.nl/SRBench/observations> [RANGE 1d TUMBLING]\n" + 
+				"SELECT ?currentTemp ?currentHumidity ?currentWindSpeed ?currentWindGust ?currentWindDirection\n" + 
+				"FROM NAMED STREAM <http://iot.soton.ac.uk/smarthome/environment> [LAST]\n" + 
 				"WHERE {\n" + 
-				"  	?sensor om-owl:processLocation ?sensorLocation ;\n" + 
-				"          om-owl:generatedObservation ?observation .\n" + 
-				"        ?sensorLocation wgs84_pos:alt \"6300\"^^xsd:float ;\n" + 
-				"                      wgs84_pos:lat \"32.892\"^^xsd:float ;\n" + 
-				"                      wgs84_pos:long \"-116.4199\"^^xsd:float .\n" + 
-				"  	?observation om-owl:observedProperty weather:_AirTemperature ;\n" + 
-				"               om-owl:result [ om-owl:floatValue ?temperature ] .\n" + 
-				"}\n" + 
-				"GROUP BY ?sensor";
+				"	?obs ssn:observedBy iotsn:environmental1;\n" + 
+				"		ssn:observationResult ?sntemp;\n" + 
+				"		ssn:observationResult ?snhumidity;\n" + 
+				"		ssn:observationResult ?snwindspeed;\n" + 
+				"		ssn:observationResult ?snwindgust;\n" + 
+				"		ssn:observationResult ?snwinddir.\n" + 
+				"	\n" + 
+				"	?sntemp ssn:hasValue ?valtemp.\n" + 
+				"	?snhumidity ssn:hasValue ?valhumidity.\n" + 
+				"	?snwindspeed ssn:hasValue ?valwindspeed.\n" + 
+				"	?snwindgust ssn:hasValue ?valwindgust.\n" + 
+				"	?snwinddir ssn:hasValue ?valwinddir.\n" + 
+				"	\n" + 
+				"	?valtemp a iot:InternalTemperatureValue;\n" + 
+				"		iot:hasQuantityValue ?currentTemp.\n" + 
+				"	?valhumidity a iot:InternalHumidityValue;\n" + 
+				"		iot:hasQuantityValue ?currentHumidity.\n" + 
+				"	?valwindspeed a iot:WindSpeedValue;\n" + 
+				"		iot:hasQuantityValue ?currentWindSpeed.\n" + 
+				"	?valwindgust a iot:WindGustValue;\n" + 
+				"		iot:hasQuantityValue ?currentWindGust.\n" + 
+				"	?valwinddir a iot:WindGustDirectionValue;\n" + 
+				"		iot:hasQuantityValue ?currentWindDirection.\n" + 
+				"}";
+		
 //		System.out.println(queryStr);
 		
 		RdfTableMapping mapping = new RdfTableMapping();
 //		mapping.loadMapping("mapping/4UT01.nt");
 //		mapping.loadMapping("/Users/eugene/Downloads/knoesis_observations_map_meta/4UT01.nt");
-		mapping.loadMapping("/Users/eugene/Downloads/knoesis_observations_ike_map_meta/HP001.nt");
-//		mapping.loadMapping("mapping/smarthome_environment.nt");
-//		mapping.loadMapping("mapping/smarthome_sensors.nt");
-//		mapping.loadMapping("mapping/smarthome_meter.nt");
-//		mapping.loadMapping("mapping/smarthome_motion.nt");
+//		mapping.loadMapping("/Users/eugene/Downloads/knoesis_observations_ike_map_meta/HP001.nt");
+		mapping.loadMapping("mapping/smarthome_environment.nt");
+		mapping.loadMapping("mapping/smarthome_sensors.nt");
+		mapping.loadMapping("mapping/smarthome_meter.nt");
+		mapping.loadMapping("mapping/smarthome_motion.nt");
 		
 //		System.out.println(queryStr);
 		

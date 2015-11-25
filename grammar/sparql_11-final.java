@@ -201,28 +201,26 @@ void StreamClause() : { String iri ; }
   iri = SourceSelector()
   StreamParamsClause(iri)
 }
-void StreamParamsClause(String iri) : { Token i; Token t; } 
+void StreamParamsClause(String iri) : {} 
 {
 	<LBRACKET>
-	<RANGE>
+	(<LAST> {
+		getQuery().addNamedGraphURI(iri+";LAST") ;
+	} | <RANGE> { RangeClause(iri); })
+	<RBRACKET>
+}
+void RangeClause(String iri) : { Token i; Token t; } 
+{
 	i = <INTEGER>
 	t = <TIMEUNIT>
 	{
 		iri = iri+";"+i.image+";"+t.image;
 	}
 	(<TUMBLING> {
-		getQuery().addNamedGraphURI(iri) ;
-	}|StepClause(iri))
-	<RBRACKET>
-}
-void StepClause(String iri) : { Token i; Token t; }
-{
-  <STEP>
-  i = <INTEGER>
-  t = <TIMEUNIT>
-  {
-	  getQuery().addNamedGraphURI(iri+";"+i.image+";"+t.image) ;
-  }
+		getQuery().addNamedGraphURI(iri+";TUMBLING") ;
+	}|<STEP> {
+		getQuery().addNamedGraphURI(iri+";STEP") ;
+	})
 }
 String SourceSelector() : { String iri ; }
 {
@@ -1522,6 +1520,7 @@ TOKEN [IGNORE_CASE] :
 | < RANGE: "range" >
 | < TUMBLING: "tumbling" >
 | < STEP: "step" >
+| < LAST: "LAST" >
 | < WHERE: "where" >
 | < AND: "and" >
 | < GRAPH: "graph" >
