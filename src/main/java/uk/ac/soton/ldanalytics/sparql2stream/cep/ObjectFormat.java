@@ -8,10 +8,10 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class ObjectFormat {
-	public Map<String,Object> getDefinitionMap(String streamName) {
+	public Map<String,Object> getDefinitionMap(String streamName,String formatFileName) {
 		Map<String, Object> definition = new LinkedHashMap<String, Object>();
 		try {
-			BufferedReader br = new BufferedReader(new FileReader("format/"+streamName+".format"));
+			BufferedReader br = new BufferedReader(new FileReader(formatFileName));
 			
 			String line = "";
 			while((line=br.readLine())!=null) {

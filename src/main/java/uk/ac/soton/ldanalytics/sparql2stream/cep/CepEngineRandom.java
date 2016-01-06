@@ -27,7 +27,7 @@ public class CepEngineRandom {
 		EPServiceProvider epService = EPServiceProviderManager.getProvider("engine_test");
 		String streamName = "_HP001";
 		ObjectFormat objectFormat = new ObjectFormat();
-		Map<String,Object> definition = objectFormat.getDefinitionMap(streamName);
+		Map<String,Object> definition = objectFormat.getDefinitionMap(streamName,"format/"+streamName+".format");
         epService.getEPAdministrator().getConfiguration().addEventType(streamName, definition);
         
         long runTime = 10;
