@@ -16,7 +16,7 @@ import com.espertech.esper.client.EPServiceProviderManager;
 import com.espertech.esper.client.EPStatement;
 
 public class CepEngine {
-	private EPServiceProvider epService = null;
+	protected EPServiceProvider epService = null;
 	private Map<String,Map<String,Object>> streams = new HashMap<String,Map<String,Object>>();
 	
 	public CepEngine(String providerName) {
@@ -32,18 +32,34 @@ public class CepEngine {
 	
 	public void AddQuery(String queryStr) {
 		EPStatement statement = epService.getEPAdministrator().createEPL(queryStr);
-        statement.addListener(new QueryListener());
+		String queryHash = Long.toString(queryStr.hashCode());
+        statement.addListener(new QueryListener(queryHash));
 	}
 	
-	public void ReadFromCSV(String streamName, String fileName, Boolean headerLine) {
+	public void PlayFromCSV(String streamName, String fileName, Boolean headerLine, int timeColumnPos, String timeFormat) {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(fileName));
 	        if(headerLine)
 	        	br.readLine();//header
+	        
+	        SimpleDateFormat sdf = new SimpleDateFormat(timeFormat);
+	        
+	        long previousTime = 0;
+	        long delay = 0;
+	        
 	        String line = "";
 	        Map<String,Object> definition = streams.get(streamName);
 	        while((line=br.readLine())!=null) {
 	        	String[] parts = line.split(",");
+	        	
+	        	if(timeColumnPos>=0) { //has timeColumn
+	        		long rowTime = sdf.parse(parts[timeColumnPos]).getTime();
+	        		if(previousTime > 0) {
+	        			delay = rowTime - previousTime;
+	        		}
+	        		previousTime = rowTime;
+	        	}
+	        	
 	            Map<String, Object> data = new LinkedHashMap<String, Object>();
 	            int i=0;
 	            for(Entry<String,Object> row:definition.entrySet()) {
@@ -51,11 +67,17 @@ public class CepEngine {
 	            }
 	            	
 	            epService.getEPRuntime().sendEvent(data, streamName);
+	            Thread.sleep(delay);
+//	            System.out.println(line);
 	        }
 	        br.close();
-		} catch(IOException e) {
+		} catch(IOException | ParseException | InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void ReadFromCSV(String streamName, String fileName, Boolean headerLine) {
+		PlayFromCSV(streamName,fileName,headerLine,-1,"");
 	}
         
     private static Object convertStrToObject(String val, Object className) {

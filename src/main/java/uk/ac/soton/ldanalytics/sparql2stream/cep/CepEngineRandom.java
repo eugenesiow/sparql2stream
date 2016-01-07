@@ -47,7 +47,7 @@ public class CepEngineRandom {
 			if(!filename.equals("blank")) {
 				String stmt = FileUtils.readFileToString(new File(filename));
 				EPStatement statement = epService.getEPAdministrator().createEPL(stmt);
-		        statement.addListener(new QueryListener());
+		        statement.addListener(new SimpleQueryListener());
 			}
 		} catch (IOException e1) {
 			e1.printStackTrace();

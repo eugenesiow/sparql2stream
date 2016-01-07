@@ -28,7 +28,7 @@ public class CepEngineTest {
         		"    FROM\n" + 
         		"        _HP001.win:time(1 hour)  ";
         EPStatement statement = epService.getEPAdministrator().createEPL(stmt);
-        statement.addListener(new QueryListener());
+        statement.addListener(new SimpleQueryListener());
         
         long startTime = System.currentTimeMillis();
         int counter = 0;
