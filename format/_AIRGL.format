@@ -1,0 +1,7 @@
+time,time
+DewPoint,float
+WindSpeed,float
+SoilTemperature,float
+RelativeHumidity,float
+WindDirection,float
+AirTemperature,float

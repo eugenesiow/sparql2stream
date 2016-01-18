@@ -36,7 +36,7 @@ public class CepEngine {
         statement.addListener(new QueryListener(queryHash));
 	}
 	
-	public void PlayFromCSV(String streamName, String fileName, Boolean headerLine, int timeColumnPos, String timeFormat) {
+	public void PlayFromCSV(String streamName, String fileName, Boolean headerLine, int timeColumnPos, String timeFormat, int fixedDelay) {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(fileName));
 	        if(headerLine)
@@ -46,25 +46,33 @@ public class CepEngine {
 	        
 	        long previousTime = 0;
 	        long delay = 0;
+	        if(fixedDelay>0) {
+	        	delay = fixedDelay;
+	        }
 	        
 	        String line = "";
 	        Map<String,Object> definition = streams.get(streamName);
 	        while((line=br.readLine())!=null) {
 	        	String[] parts = line.split(",");
 	        	
-	        	if(timeColumnPos>=0) { //has timeColumn
-	        		long rowTime = sdf.parse(parts[timeColumnPos]).getTime();
-	        		if(previousTime > 0) {
-	        			delay = rowTime - previousTime;
-	        		}
-	        		previousTime = rowTime;
+	        	if(fixedDelay<0) {
+		        	if(timeColumnPos>=0) { //has timeColumn
+		        		long rowTime = sdf.parse(parts[timeColumnPos]).getTime();
+		        		if(previousTime > 0) {
+		        			delay = rowTime - previousTime;
+		        		}
+		        		previousTime = rowTime;
+		        	}
 	        	}
 	        	
 	            Map<String, Object> data = new LinkedHashMap<String, Object>();
 	            int i=0;
 	            for(Entry<String,Object> row:definition.entrySet()) {
-	            	data.put(row.getKey(), convertStrToObject(parts[i++],row.getValue()));
+//	            	System.out.println(row.getKey());
+	            	data.put(row.getKey(), convertStrToObject(parts[i++],row.getValue(),timeFormat));
 	            }
+	            
+//	            delay = 1000; //override delay for testing
 	            	
 	            epService.getEPRuntime().sendEvent(data, streamName);
 	            Thread.sleep(delay);
@@ -77,17 +85,17 @@ public class CepEngine {
 	}
 	
 	public void ReadFromCSV(String streamName, String fileName, Boolean headerLine) {
-		PlayFromCSV(streamName,fileName,headerLine,-1,"");
+		PlayFromCSV(streamName,fileName,headerLine,-1,"",-1);
 	}
         
-    private static Object convertStrToObject(String val, Object className) {
+    private static Object convertStrToObject(String val, Object className, String timeFormat) {
 		Object object = null;
 		if(className.equals(String.class)) {
 			object = val;
 		} else if(className.equals(Float.class)) {
 			object = Float.parseFloat(val);
 		} else if(className.equals(Timestamp.class)) {
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			SimpleDateFormat sdf = new SimpleDateFormat(timeFormat);
 			try {
 				object = new Timestamp(sdf.parse(val).getTime());
 			} catch (ParseException e) {
