@@ -8,6 +8,7 @@ import org.apache.jena.sparql.algebra.Op;
 import org.apache.jena.sparql.algebra.OpWalker;
 
 import uk.ac.soton.ldanalytics.sparql2sql.model.RdfTableMapping;
+import uk.ac.soton.ldanalytics.sparql2sql.model.RdfTableMappingJena;
 import uk.ac.soton.ldanalytics.sparql2sql.model.SparqlOpVisitor;
 import uk.ac.soton.ldanalytics.sparql2sql.util.FormatUtil;
 import uk.ac.soton.ldanalytics.sparql2sql.util.SQLFormatter;
@@ -133,7 +134,7 @@ public class test {
 		
 //		System.out.println(queryStr);
 		
-		RdfTableMapping mapping = new RdfTableMapping();
+		RdfTableMapping mapping = new RdfTableMappingJena();
 //		mapping.loadMapping("mapping/4UT01.nt");
 //		mapping.loadMapping("/Users/eugene/Downloads/knoesis_observations_map_meta/4UT01.nt");
 		mapping.loadMapping("/Users/eugene/Downloads/knoesis_observations_ike_map_meta/HP001.nt");
