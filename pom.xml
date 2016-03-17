@@ -48,7 +48,7 @@
 	          <manifest>
 	            <addClasspath>true</addClasspath>
 	            <classpathPrefix>dependency/</classpathPrefix>
-	            <mainClass>uk.ac.soton.ldanalytics.sparql2stream.cep.CepEngineRandom</mainClass>
+	            <mainClass>uk.ac.soton.ldanalytics.sparql2stream.cep.CepEngineRandomBench</mainClass>
 	          </manifest>
 	        </archive>
 	      </configuration>
