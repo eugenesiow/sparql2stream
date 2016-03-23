@@ -1,4 +1,4 @@
-_HP001,http://www.cwi.nl/SRBench/observations
+_ALPHA,http://www.cwi.nl/SRBench/observations
 motion,http://iot.soton.ac.uk/smarthome/motion
 meter,http://iot.soton.ac.uk/smarthome/meter
 environment,http://iot.soton.ac.uk/smarthome/environment

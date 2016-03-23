@@ -112,32 +112,68 @@ public class test {
 //				"		iot:hasQuantityValue ?currentWindDirection.\n" + 
 //				"}";
 		
-		String queryStr = "PREFIX om-owl: <http://knoesis.wright.edu/ssw/ont/sensor-observation.owl#>\n" + 
-        		"PREFIX weather: <http://knoesis.wright.edu/ssw/ont/weather.owl#>\n" + 
-        		"PREFIX wgs84_pos: <http://www.w3.org/2003/01/geo/wgs84_pos#>\n" + 
-        		"PREFIX owl-time: <http://www.w3.org/2006/time#>\n" + 
-        		"PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" + 
-        		"\n" + 
-        		"SELECT DISTINCT ?sensor ?value ?uom ?lat ?lon\n" + 
-        		"FROM NAMED STREAM <http://www.cwi.nl/SRBench/observations> [RANGE 1h STEP]\n" +
-        		"FROM NAMED <http://www.cwi.nl/SRBench/sdsd>\n" +
-        		"WHERE {\n" + 
-        		"  	?observation om-owl:procedure ?sensor ;\n" + 
-        		"               a weather:RainfallObservation ;\n" + 
-        		"               om-owl:result ?result.\n"+
-        		"	?sensor om-owl:processLocation ?sensorLocation.	\n" +
-        		"	?sensorLocation wgs84_pos:lat ?lat;	\n" +
-        		"		wgs84_pos:long ?lon.	\n" +
-        		"  	?result om-owl:floatValue ?value ;\n" + 
-        		"          om-owl:uom ?uom .\n" + 
-        		"}";
+//		String queryStr = "PREFIX om-owl: <http://knoesis.wright.edu/ssw/ont/sensor-observation.owl#>\n" + 
+//        		"PREFIX weather: <http://knoesis.wright.edu/ssw/ont/weather.owl#>\n" + 
+//        		"PREFIX wgs84_pos: <http://www.w3.org/2003/01/geo/wgs84_pos#>\n" + 
+//        		"PREFIX owl-time: <http://www.w3.org/2006/time#>\n" + 
+//        		"PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" + 
+//        		"\n" + 
+//        		"SELECT DISTINCT ?sensor ?value ?uom ?lat ?lon\n" + 
+//        		"FROM NAMED STREAM <http://www.cwi.nl/SRBench/observations> [RANGE 1h STEP]\n" +
+//        		"FROM NAMED <http://www.cwi.nl/SRBench/sdsd>\n" +
+//        		"WHERE {\n" + 
+//        		"  	?observation om-owl:procedure ?sensor ;\n" + 
+//        		"               a weather:RainfallObservation ;\n" + 
+//        		"               om-owl:result ?result.\n"+
+//        		"	?sensor om-owl:processLocation ?sensorLocation.	\n" +
+//        		"	?sensorLocation wgs84_pos:lat ?lat;	\n" +
+//        		"		wgs84_pos:long ?lon.	\n" +
+//        		"  	?result om-owl:floatValue ?value ;\n" + 
+//        		"          om-owl:uom ?uom .\n" + 
+//        		"}";
 		
-//		System.out.println(queryStr);
+//		String queryStr = "PREFIX om-owl: <http://knoesis.wright.edu/ssw/ont/sensor-observation.owl#>\n" + 
+//				"PREFIX weather: <http://knoesis.wright.edu/ssw/ont/weather.owl#>\n" + 
+//				"PREFIX wgs84_pos: <http://www.w3.org/2003/01/geo/wgs84_pos#>\n" + 
+//				"PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" + 
+//				"PREFIX owl-time: <http://www.w3.org/2006/time#>\n" + 
+//				"\n" + 
+//				"SELECT DISTINCT ?lat ?long ?alt\n" + 
+//				"FROM NAMED STREAM <http://www.cwi.nl/SRBench/observations> [RANGE 1d STEP]\n" + 
+//				"WHERE {\n" + 
+//				"  ?sensor om-owl:generatedObservation [a weather:SnowfallObservation ] .\n" + 
+//				"  ?sensor om-owl:processLocation ?sensorLocation .\n" + 
+//				"  ?sensorLocation wgs84_pos:alt ?alt ;\n" + 
+//				"                  wgs84_pos:lat ?lat ;\n" + 
+//				"                  wgs84_pos:long ?long .\n" + 
+//				"}";
+		String queryStr = "PREFIX om-owl: <http://knoesis.wright.edu/ssw/ont/sensor-observation.owl#>\n" + 
+				"PREFIX weather: <http://knoesis.wright.edu/ssw/ont/weather.owl#>\n" + 
+				"PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" + 
+				"PREFIX owl-time: <http://www.w3.org/2006/time#>\n" + 
+				"\n" + 
+				"SELECT ?sensor\n" + 
+				"FROM NAMED STREAM <http://www.cwi.nl/SRBench/observations> [RANGE 1h STEP]\n" + 
+				"WHERE {\n" + 
+				"  ?sensor om-owl:generatedObservation [a weather:SnowfallObservation ] ;\n" + 
+				"          om-owl:generatedObservation ?o1 ;\n" + 
+				"          om-owl:generatedObservation ?o2 .\n" + 
+				"  ?o1 a weather:TemperatureObservation ;\n" + 
+				"      om-owl:observedProperty weather:_AirTemperature ;\n" + 
+				"      om-owl:result [om-owl:floatValue ?temperature] .\n" + 
+				"  ?o2 a weather:WindSpeedObservation ;\n" + 
+				"      om-owl:observedProperty weather:_WindSpeed ;\n" + 
+				"      om-owl:result [om-owl:floatValue ?windSpeed] .\n" + 
+				"} GROUP BY ?sensor \n" + 
+				"HAVING ( AVG(?temperature) < \"32\"^^xsd:float  &&  MIN(?windSpeed) > \"40.0\"^^xsd:float ) ";
+		
+		System.out.println(queryStr);
 		
 		RdfTableMapping mapping = new RdfTableMappingJena();
 //		mapping.loadMapping("mapping/4UT01.nt");
 //		mapping.loadMapping("/Users/eugene/Downloads/knoesis_observations_map_meta/4UT01.nt");
-		mapping.loadMapping("/Users/eugene/Downloads/knoesis_observations_ike_map_meta/HP001.nt");
+//		mapping.loadMapping("/Users/eugene/Downloads/knoesis_observations_ike_map_meta/HP001.nt");
+		mapping.loadMapping("/Users/eugene/Downloads/knoesis_observations_ike_map_snow/ALPHA.nt");
 //		mapping.loadMapping("mapping/smarthome_environment.nt");
 //		mapping.loadMapping("mapping/smarthome_sensors.nt");
 //		mapping.loadMapping("mapping/smarthome_meter.nt");

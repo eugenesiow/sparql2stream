@@ -1,0 +1,6 @@
+SELECT
+    DISTINCT '42.16472' AS lat ,
+    '-121.755' AS long ,
+    '4101.0' AS alt 
+FROM
+    _HP001.win:time(1 day)  

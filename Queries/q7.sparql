@@ -6,8 +6,4 @@ SELECT ?sensor
 FROM NAMED STREAM <http://www.cwi.nl/SRBench/observations> [RANGE 1h TUMBLING]
 WHERE {
 	?sensor om-owl:generatedObservation ?observation.
-	?observation om-owl:samplingTime ?instant .
-	?instant owl-time:inXSDDateTime ?time .
 }
-GROUP BY ?sensor
-HAVING (count(?time) = 0)

@@ -4,8 +4,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX owl-time: <http://www.w3.org/2006/time#>
 
 SELECT ?sensor
-FROM NAMED STREAM <http://www.cwi.nl/SRBench/observations>
-           [RANGE 3h STEP 10m]
+FROM NAMED STREAM <http://www.cwi.nl/SRBench/observations> [RANGE 1h STEP]
 WHERE {
   ?sensor om-owl:generatedObservation [a weather:SnowfallObservation ] ;
           om-owl:generatedObservation ?o1 ;
@@ -13,9 +12,8 @@ WHERE {
   ?o1 a weather:TemperatureObservation ;
       om-owl:observedProperty weather:_AirTemperature ;
       om-owl:result [om-owl:floatValue ?temperature] .
-  ?o2 a weather:WindObservation ;
+  ?o2 a weather:WindSpeedObservation ;
       om-owl:observedProperty weather:_WindSpeed ;
       om-owl:result [om-owl:floatValue ?windSpeed] .
 }
-GROUP BY ?sensor
 HAVING ( AVG(?temperature) < "32"^^xsd:float  &&  MIN(?windSpeed) > "40.0"^^xsd:float ) 
