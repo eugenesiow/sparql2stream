@@ -1,0 +1,11 @@
+SELECT
+	meter.MeterName , 
+	meter.Meter,
+    sum(meter.RealPowerWatts) AS power 
+    FROM
+        meter.win:time(1 hour) 
+    WHERE
+        meter.RealPowerWatts>=0 
+    GROUP BY
+        meter.MeterName ,
+        meter.Meter

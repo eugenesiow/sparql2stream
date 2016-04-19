@@ -1,0 +1,5 @@
+MeterName,string
+Meter,string
+TimestampUTC,timestamp
+RealPowerWatts,int
+CircuitNumber,int

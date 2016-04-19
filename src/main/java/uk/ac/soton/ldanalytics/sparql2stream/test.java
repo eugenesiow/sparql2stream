@@ -147,25 +147,47 @@ public class test {
 //				"                  wgs84_pos:lat ?lat ;\n" + 
 //				"                  wgs84_pos:long ?long .\n" + 
 //				"}";
-		String queryStr = "PREFIX om-owl: <http://knoesis.wright.edu/ssw/ont/sensor-observation.owl#>\n" + 
-				"PREFIX weather: <http://knoesis.wright.edu/ssw/ont/weather.owl#>\n" + 
-				"PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" + 
-				"PREFIX owl-time: <http://www.w3.org/2006/time#>\n" + 
+//		String queryStr = "PREFIX om-owl: <http://knoesis.wright.edu/ssw/ont/sensor-observation.owl#>\n" + 
+//				"PREFIX weather: <http://knoesis.wright.edu/ssw/ont/weather.owl#>\n" + 
+//				"PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" + 
+//				"PREFIX owl-time: <http://www.w3.org/2006/time#>\n" + 
+//				"\n" + 
+//				"SELECT ?sensor\n" + 
+//				"FROM NAMED STREAM <http://www.cwi.nl/SRBench/observations> [RANGE 1h STEP]\n" + 
+//				"WHERE {\n" + 
+//				"  ?sensor om-owl:generatedObservation [a weather:SnowfallObservation ] ;\n" + 
+//				"          om-owl:generatedObservation ?o1 ;\n" + 
+//				"          om-owl:generatedObservation ?o2 .\n" + 
+//				"  ?o1 a weather:TemperatureObservation ;\n" + 
+//				"      om-owl:observedProperty weather:_AirTemperature ;\n" + 
+//				"      om-owl:result [om-owl:floatValue ?temperature] .\n" + 
+//				"  ?o2 a weather:WindSpeedObservation ;\n" + 
+//				"      om-owl:observedProperty weather:_WindSpeed ;\n" + 
+//				"      om-owl:result [om-owl:floatValue ?windSpeed] .\n" + 
+//				"} GROUP BY ?sensor \n" + 
+//				"HAVING ( AVG(?temperature) < \"32\"^^xsd:float  &&  MIN(?windSpeed) > \"40.0\"^^xsd:float ) ";
+		String queryStr = "PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#>\n" + 
+				"PREFIX iotsn: <http://iot.soton.ac.uk/smarthome/sensor#>\n" + 
+				"PREFIX iot: <http://purl.oclc.org/NET/iot#>\n" + 
 				"\n" + 
-				"SELECT ?sensor\n" + 
-				"FROM NAMED STREAM <http://www.cwi.nl/SRBench/observations> [RANGE 1h STEP]\n" + 
-				"WHERE {\n" + 
-				"  ?sensor om-owl:generatedObservation [a weather:SnowfallObservation ] ;\n" + 
-				"          om-owl:generatedObservation ?o1 ;\n" + 
-				"          om-owl:generatedObservation ?o2 .\n" + 
-				"  ?o1 a weather:TemperatureObservation ;\n" + 
-				"      om-owl:observedProperty weather:_AirTemperature ;\n" + 
-				"      om-owl:result [om-owl:floatValue ?temperature] .\n" + 
-				"  ?o2 a weather:WindSpeedObservation ;\n" + 
-				"      om-owl:observedProperty weather:_WindSpeed ;\n" + 
-				"      om-owl:result [om-owl:floatValue ?windSpeed] .\n" + 
-				"} GROUP BY ?sensor \n" + 
-				"HAVING ( AVG(?temperature) < \"32\"^^xsd:float  &&  MIN(?windSpeed) > \"40.0\"^^xsd:float ) ";
+				"SELECT ?platform (sum(?power) as ?totalpower)\n" + 
+				"FROM NAMED STREAM <http://iot.soton.ac.uk/smarthome/meter> [RANGE 1h STEP]\n" + 
+				"WHERE\n" + 
+				"{\n" + 
+				"    {\n" + 
+				"      SELECT  ?platform (avg(?meterval) as ?power)\n" + 
+				"      WHERE\n" + 
+				"      {\n" + 
+				"        ?meter ssn:onPlatform ?platform.\n" + 
+				"        ?meterobs ssn:observedBy ?meter;\n" + 
+				"          ssn:observationResult ?metersnout.\n" + 
+				"        ?metersnout ssn:hasValue ?meterobsval.\n" + 
+				"        ?meterobsval a iot:EnergyValue.\n" + 
+				"        ?meterobsval iot:hasQuantityValue ?meterval.\n" + 
+				"        FILTER(?meterval > 0)\n" + 
+				"      } GROUP BY ?platform ?meter\n" + 
+				"    }\n" + 
+				"} GROUP BY ?platform";
 		
 		System.out.println(queryStr);
 		
@@ -173,8 +195,8 @@ public class test {
 //		mapping.loadMapping("mapping/4UT01.nt");
 //		mapping.loadMapping("/Users/eugene/Downloads/knoesis_observations_map_meta/4UT01.nt");
 //		mapping.loadMapping("/Users/eugene/Downloads/knoesis_observations_ike_map_meta/HP001.nt");
-		mapping.loadMapping("/Users/eugene/Downloads/knoesis_observations_ike_map_snow/ALPHA.nt");
-//		mapping.loadMapping("mapping/smarthome_environment.nt");
+//		mapping.loadMapping("/Users/eugene/Downloads/knoesis_observations_ike_map_snow/ALPHA.nt");
+		mapping.loadMapping("mapping/smarthome_environment.nt");
 //		mapping.loadMapping("mapping/smarthome_sensors.nt");
 //		mapping.loadMapping("mapping/smarthome_meter.nt");
 //		mapping.loadMapping("mapping/smarthome_motion.nt");

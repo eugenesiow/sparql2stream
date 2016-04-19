@@ -1,0 +1,5 @@
+SELECT
+    min(_HP001.AirTemperature) AS minTemperature ,
+    max(_HP001.AirTemperature) AS maxTemperature 
+FROM
+    _HP001.win:time(1 hour)

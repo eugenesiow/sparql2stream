@@ -1,0 +1,5 @@
+SELECT
+    avg(_HP001.WindSpeed) AS windForce ,
+    avg(_HP001.Winddirection) AS avgWindDirection 
+FROM
+    _HP001.win:time(1 hour)

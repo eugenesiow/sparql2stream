@@ -44,6 +44,12 @@ public class ObjectFormat {
 			case "time":
 				object = Timestamp.class;
 				break;
+			case "timestamp":
+				object = Long.class;
+				break;
+			case "int":
+				object = Integer.class;
+				break;
 		}
 		return object;
 	}

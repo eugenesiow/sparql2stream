@@ -1,0 +1,4 @@
+SELECT
+    avg(environment.insideTemp) AS sval 
+FROM
+    environment.win:time(1 hour)  

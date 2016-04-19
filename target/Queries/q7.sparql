@@ -1,0 +1,9 @@
+PREFIX om-owl: <http://knoesis.wright.edu/ssw/ont/sensor-observation.owl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl-time: <http://www.w3.org/2006/time#>
+
+SELECT ?sensor
+FROM NAMED STREAM <http://www.cwi.nl/SRBench/observations> [RANGE 1h TUMBLING]
+WHERE {
+	?sensor om-owl:generatedObservation ?observation.
+}

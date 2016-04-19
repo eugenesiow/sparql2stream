@@ -1,0 +1,26 @@
+PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#>
+PREFIX iotsn: <http://iot.soton.ac.uk/smarthome/sensor#>
+PREFIX iot: <http://purl.oclc.org/NET/iot#>
+PREFIX  rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT (?platform as ?meterplatform) (avg(?meterval) as ?power) ?meter
+FROM NAMED STREAM <http://iot.soton.ac.uk/smarthome/meter> [RANGE 1h STEP]
+FROM NAMED STREAM <http://iot.soton.ac.uk/smarthome/motion> [RANGE 1h STEP]
+WHERE
+{
+    ?meter ssn:onPlatform ?platform.
+    ?meterobs ssn:observedBy ?meter;
+        ssn:observationResult ?metersnout.
+    ?metersnout ssn:hasValue ?meterobsval.
+    ?meterobsval a iot:EnergyValue.
+    ?meterobsval iot:hasQuantityValue ?meterval.
+    
+    ?sensor ssn:onPlatform ?platform.
+    ?obsval a iot:MotionValue;
+      iot:hasQuantityValue false.
+    ?snout ssn:hasValue ?obsval.
+    ?obs ssn:observationResult ?snout.
+    ?obs ssn:observedBy ?sensor.
+    
+    FILTER(?meterval >= 0)
+} GROUP BY ?platform ?meter

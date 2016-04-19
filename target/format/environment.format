@@ -1,0 +1,3 @@
+TimestampUTC,timestamp
+insideTemp,float
+outsideTemp,float

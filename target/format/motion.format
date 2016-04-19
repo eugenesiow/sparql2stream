@@ -1,0 +1,3 @@
+MotionSensorName,string
+TimestampUTC,timestamp
+MotionOrNoMotion,int

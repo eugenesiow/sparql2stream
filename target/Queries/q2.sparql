@@ -1,0 +1,17 @@
+PREFIX om-owl: <http://knoesis.wright.edu/ssw/ont/sensor-observation.owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX weather: <http://knoesis.wright.edu/ssw/ont/weather.owl#>
+PREFIX owl-time: <http://www.w3.org/2006/time#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT DISTINCT ?sensor ?value ?uom
+FROM NAMED STREAM <http://www.cwi.nl/SRBench/observations> [RANGE 1h STEP]
+WHERE {
+  ?observation om-owl:procedure ?sensor ;
+               a weather:RainfallObservation ;
+               om-owl:result ?result.
+  ?result om-owl:floatValue ?value .
+  OPTIONAL {
+    ?result om-owl:uom ?uom .
+  }
+}

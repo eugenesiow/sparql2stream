@@ -1,0 +1,18 @@
+PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#>
+PREFIX iotsn: <http://iot.soton.ac.uk/smarthome/sensor#>
+PREFIX iot: <http://purl.oclc.org/NET/iot#>
+
+
+SELECT  ?platform ?meter (sum(?meterval) as ?power)
+FROM NAMED STREAM <http://iot.soton.ac.uk/smarthome/meter> [RANGE 1h STEP]
+WHERE
+{
+	?meter ssn:onPlatform ?platform.
+    ?meterobs ssn:observedBy ?meter;
+      ssn:observationResult ?metersnout.
+    ?metersnout ssn:hasValue ?meterobsval.
+    ?meterobsval a iot:EnergyValue.
+    ?meterobsval iot:hasQuantityValue ?meterval.
+    FILTER(?meterval >= 0)
+} GROUP BY ?platform ?meter
+    

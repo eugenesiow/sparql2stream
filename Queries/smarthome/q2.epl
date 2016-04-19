@@ -1,0 +1,5 @@
+SELECT
+    max(environment.insideTemp) AS max ,
+    min(environment.insideTemp) AS min 
+FROM
+    environment.win:time(1 day)   

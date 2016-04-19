@@ -71,3 +71,77 @@ Was expecting one of:
 	at uk.ac.soton.ldanalytics.sparql2stream.parser.StreamQueryFactory.create(StreamQueryFactory.java:33)
 	at uk.ac.soton.ldanalytics.sparql2stream.parser.StreamQueryFactory.create(StreamQueryFactory.java:21)
 	at uk.ac.soton.ldanalytics.sparql2stream.test.main(test.java:187)
+2016-04-15 15:22:54 WARN  ParserSPARQL11:88 - Unexpected throwable: 
+uk.ac.soton.ldanalytics.sparql2stream.parser.lang.ParseException: Encountered " "avg" "avg "" at line 5, column 8.
+Was expecting one of:
+    <VAR1> ...
+    <VAR2> ...
+    "distinct" ...
+    "reduced" ...
+    "(" ...
+    "*" ...
+    
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.generateParseException(SPARQLParser11.java:5403)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.jj_consume_token(SPARQLParser11.java:5323)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.SelectClause(SPARQLParser11.java:221)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.SelectQuery(SPARQLParser11.java:117)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.Query(SPARQLParser11.java:29)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.QueryUnit(SPARQLParser11.java:20)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.ParserSPARQL11$1.exec(ParserSPARQL11.java:47)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.ParserSPARQL11.perform(ParserSPARQL11.java:96)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.ParserSPARQL11.parse$(ParserSPARQL11.java:51)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser.parse(SPARQLParser.java:34)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.StreamQueryFactory.parse(StreamQueryFactory.java:82)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.StreamQueryFactory.create(StreamQueryFactory.java:47)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.StreamQueryFactory.create(StreamQueryFactory.java:33)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.StreamQueryFactory.create(StreamQueryFactory.java:21)
+	at uk.ac.soton.ldanalytics.sparql2stream.test.main(test.java:200)
+2016-04-15 15:34:52 WARN  ParserSPARQL11:88 - Unexpected throwable: 
+uk.ac.soton.ldanalytics.sparql2stream.parser.lang.ParseException: Encountered " "}" "} "" at line 38, column 1.
+Was expecting one of:
+    <EOF> 
+    "limit" ...
+    "offset" ...
+    "order" ...
+    "values" ...
+    "group" ...
+    "having" ...
+    
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.generateParseException(SPARQLParser11.java:5403)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.jj_consume_token(SPARQLParser11.java:5323)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.QueryUnit(SPARQLParser11.java:21)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.ParserSPARQL11$1.exec(ParserSPARQL11.java:47)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.ParserSPARQL11.perform(ParserSPARQL11.java:96)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.ParserSPARQL11.parse$(ParserSPARQL11.java:51)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser.parse(SPARQLParser.java:34)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.StreamQueryFactory.parse(StreamQueryFactory.java:82)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.StreamQueryFactory.create(StreamQueryFactory.java:47)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.StreamQueryFactory.create(StreamQueryFactory.java:33)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.StreamQueryFactory.create(StreamQueryFactory.java:21)
+	at uk.ac.soton.ldanalytics.sparql2stream.test.main(test.java:225)
+2016-04-19 13:05:41 INFO  EPServiceProviderImpl:415 - Initializing engine URI 'engine_test' version 5.3.0
+2016-04-19 13:14:34 INFO  EPServiceProviderImpl:415 - Initializing engine URI 'engine_test' version 5.3.0
+2016-04-19 13:15:51 INFO  EPServiceProviderImpl:415 - Initializing engine URI 'engine_test' version 5.3.0
+2016-04-19 13:17:42 INFO  EPServiceProviderImpl:415 - Initializing engine URI 'engine_test' version 5.3.0
+2016-04-19 13:18:38 INFO  EPServiceProviderImpl:415 - Initializing engine URI 'engine_test' version 5.3.0
+2016-04-19 13:19:28 INFO  EPServiceProviderImpl:415 - Initializing engine URI 'engine_test' version 5.3.0
+2016-04-19 13:22:07 INFO  EPServiceProviderImpl:415 - Initializing engine URI 'engine_test' version 5.3.0
+2016-04-19 13:22:21 INFO  EPServiceProviderImpl:415 - Initializing engine URI 'engine_test' version 5.3.0
+2016-04-19 13:22:31 INFO  EPServiceProviderImpl:415 - Initializing engine URI 'engine_test' version 5.3.0
+2016-04-19 13:31:06 INFO  EPServiceProviderImpl:415 - Initializing engine URI 'engine_test' version 5.3.0
+2016-04-19 13:31:26 INFO  EPServiceProviderImpl:415 - Initializing engine URI 'engine_test' version 5.3.0
+2016-04-19 13:32:10 INFO  EPServiceProviderImpl:415 - Initializing engine URI 'engine_test' version 5.3.0
+2016-04-19 13:32:37 INFO  EPServiceProviderImpl:415 - Initializing engine URI 'engine_test' version 5.3.0
+2016-04-19 13:34:25 INFO  EPServiceProviderImpl:415 - Initializing engine URI 'engine_test' version 5.3.0
+2016-04-19 13:34:50 INFO  EPServiceProviderImpl:415 - Initializing engine URI 'engine_test' version 5.3.0
+2016-04-19 13:45:49 INFO  EPServiceProviderImpl:415 - Initializing engine URI 'engine_test' version 5.3.0
+2016-04-19 13:46:21 INFO  EPServiceProviderImpl:415 - Initializing engine URI 'engine_test' version 5.3.0
+2016-04-19 13:46:40 INFO  EPServiceProviderImpl:415 - Initializing engine URI 'engine_test' version 5.3.0
+2016-04-19 14:37:09 INFO  EPServiceProviderImpl:415 - Initializing engine URI 'engine_test' version 5.3.0
+2016-04-19 14:37:58 INFO  EPServiceProviderImpl:415 - Initializing engine URI 'engine_test' version 5.3.0
+2016-04-19 14:38:35 INFO  EPServiceProviderImpl:415 - Initializing engine URI 'engine_test' version 5.3.0
+2016-04-19 14:41:08 INFO  EPServiceProviderImpl:415 - Initializing engine URI 'engine_test' version 5.3.0
+2016-04-19 14:42:46 INFO  EPServiceProviderImpl:415 - Initializing engine URI 'engine_test' version 5.3.0
+2016-04-19 14:43:29 INFO  EPServiceProviderImpl:415 - Initializing engine URI 'engine_test' version 5.3.0
+2016-04-19 14:45:58 INFO  EPServiceProviderImpl:415 - Initializing engine URI 'engine_test' version 5.3.0
+2016-04-19 14:55:06 INFO  EPServiceProviderImpl:415 - Initializing engine URI 'engine_test' version 5.3.0

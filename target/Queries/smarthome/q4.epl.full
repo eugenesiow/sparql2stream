@@ -1,0 +1,13 @@
+SELECT
+	meter.Meter,
+	meter.MeterName AS meterplatform,
+    avg(meter.RealPowerWatts) AS power 
+    FROM
+        meter.win:time(1 hour) ,
+        motion.win:time(1 hour)
+    WHERE
+        meter.RealPowerWatts>=0 AND
+        meter.MeterName = motion.MotionSensorName
+    GROUP BY
+        meter.MeterName ,
+        meter.Meter

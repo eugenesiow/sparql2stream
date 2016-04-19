@@ -1,0 +1,1 @@
+java -Xmx700m -cp sparql2stream-0.0.1-SNAPSHOT.jar uk.ac.soton.ldanalytics.sparql2stream.cep.CepEngineSmarthomeTimestamps Queries/smarthome/q4.epl 101 1000 > smarthome/q4.result.out
