@@ -515,9 +515,9 @@ void TriplesTemplate(TripleCollector acc) : { }
     TriplesSameSubject(acc)
     (<DOT> (TriplesTemplate(acc))?)?
 }
-Element GroupGraphPattern() : { Element el = null ; Token t ; }
+Element GroupGraphPattern() : { Node wn; Element el = null ; Token t ; }
 {
-  t = <LBRACE>
+  t = 	<LBRACE>
   { int beginLine = t.beginLine; int beginColumn = t.beginColumn; t = null; }
   (
     { startSubSelect(beginLine, beginColumn) ; }
@@ -575,6 +575,8 @@ Element GraphPatternNotTriples() : { Element el = null ; }
  |
    el = GraphGraphPattern()
  |
+   el = WindowGraphPattern()
+ |
    el = ServiceGraphPattern()
  |
    el = Filter()
@@ -592,6 +594,11 @@ Element OptionalGraphPattern() : { Element el ; }
 Element GraphGraphPattern() : { Element el ; Node n ;}
 {
   <GRAPH> n = VarOrIri() el = GroupGraphPattern()
+    { return new ElementNamedGraph(n, el) ; }
+}
+Element WindowGraphPattern() : { Element el ; Node n ;}
+{
+  <WINDOW> n = WindowIri() el = GroupGraphPattern()
     { return new ElementNamedGraph(n, el) ; }
 }
 Element ServiceGraphPattern() : { Element el ; Node n ; boolean silent = false ; }
@@ -1050,6 +1057,11 @@ Node VarOrIri() : {Node n = null ; String iri ; }
   ( n = Var() | iri = iri() { n = createNode(iri) ; } )
   { return n ; }
 }
+Node WindowIri() : {Node n = null ; String iri ; }
+{
+  ( iri = prefixless() { n = createNode(iri + ";WINDOW") ; } )
+  { return n ; }
+}
 Node VarOrBlankNodeOrIri() : {Node n = null ; String iri ; }
 {
   ( n = Var() | n = BlankNode() | iri = iri() { n = createNode(iri) ; } )
@@ -1451,6 +1463,14 @@ String iri() : { String iri ; }
 |
   iri = PrefixedName() { return iri ; }
 }
+String prefixless() : { Token t ; } {
+	( t = <PNAME_LN>
+    { return t.image ; }
+  |
+    t = <PNAME_NS>
+    { return t.image ; }
+  )
+}
 String PrefixedName() : { Token t ; }
 {
   ( t = <PNAME_LN>
@@ -1524,6 +1544,7 @@ TOKEN [IGNORE_CASE] :
 | < WHERE: "where" >
 | < AND: "and" >
 | < GRAPH: "graph" >
+| < WINDOW: "window" >
 | < OPTIONAL: "optional" >
 | < UNION: "union" >
 | < MINUS_P: "minus" >

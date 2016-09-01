@@ -145,3 +145,135 @@ Was expecting one of:
 2016-04-19 14:43:29 INFO  EPServiceProviderImpl:415 - Initializing engine URI 'engine_test' version 5.3.0
 2016-04-19 14:45:58 INFO  EPServiceProviderImpl:415 - Initializing engine URI 'engine_test' version 5.3.0
 2016-04-19 14:55:06 INFO  EPServiceProviderImpl:415 - Initializing engine URI 'engine_test' version 5.3.0
+2016-08-30 14:23:44 WARN  ParserSPARQL11:88 - Unexpected throwable: 
+uk.ac.soton.ldanalytics.sparql2stream.parser.lang.ParseException: Encountered " <INTEGER> "10 "" at line 5, column 75.
+Was expecting:
+    "]" ...
+    
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.generateParseException(SPARQLParser11.java:5403)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.jj_consume_token(SPARQLParser11.java:5323)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.StreamParamsClause(SPARQLParser11.java:479)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.StreamClause(SPARQLParser11.java:458)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.NamedClause(SPARQLParser11.java:440)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.DatasetClause(SPARQLParser11.java:415)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.SelectQuery(SPARQLParser11.java:129)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.Query(SPARQLParser11.java:29)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.QueryUnit(SPARQLParser11.java:20)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.ParserSPARQL11$1.exec(ParserSPARQL11.java:47)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.ParserSPARQL11.perform(ParserSPARQL11.java:96)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.ParserSPARQL11.parse$(ParserSPARQL11.java:51)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser.parse(SPARQLParser.java:34)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.StreamQueryFactory.parse(StreamQueryFactory.java:82)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.StreamQueryFactory.create(StreamQueryFactory.java:47)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.StreamQueryFactory.create(StreamQueryFactory.java:33)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.StreamQueryFactory.create(StreamQueryFactory.java:21)
+	at uk.ac.soton.ldanalytics.sparql2stream.test.main(test.java:209)
+2016-09-01 14:51:39 WARN  ParserSPARQL11:88 - Unexpected throwable: 
+uk.ac.soton.ldanalytics.sparql2stream.parser.lang.ParseException: Encountered " "{" "{ "" at line 8, column 7.
+Was expecting:
+    "window" ...
+    
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.generateParseException(SPARQLParser11.java:5405)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.jj_consume_token(SPARQLParser11.java:5325)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.GroupGraphPattern(SPARQLParser11.java:1793)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.WhereClause(SPARQLParser11.java:521)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.SelectQuery(SPARQLParser11.java:131)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.Query(SPARQLParser11.java:29)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.QueryUnit(SPARQLParser11.java:20)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.ParserSPARQL11$1.exec(ParserSPARQL11.java:47)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.ParserSPARQL11.perform(ParserSPARQL11.java:96)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.ParserSPARQL11.parse$(ParserSPARQL11.java:51)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser.parse(SPARQLParser.java:34)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.StreamQueryFactory.parse(StreamQueryFactory.java:82)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.StreamQueryFactory.create(StreamQueryFactory.java:47)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.StreamQueryFactory.create(StreamQueryFactory.java:33)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.StreamQueryFactory.create(StreamQueryFactory.java:21)
+	at uk.ac.soton.ldanalytics.sparql2stream.test.main(test.java:228)
+2016-09-01 14:52:03 WARN  ParserSPARQL11:88 - Unexpected throwable: 
+uk.ac.soton.ldanalytics.sparql2stream.parser.lang.ParseException: Encountered " "{" "{ "" at line 8, column 7.
+Was expecting:
+    "window" ...
+    
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.generateParseException(SPARQLParser11.java:5405)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.jj_consume_token(SPARQLParser11.java:5325)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.GroupGraphPattern(SPARQLParser11.java:1793)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.WhereClause(SPARQLParser11.java:521)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.SelectQuery(SPARQLParser11.java:131)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.Query(SPARQLParser11.java:29)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.QueryUnit(SPARQLParser11.java:20)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.ParserSPARQL11$1.exec(ParserSPARQL11.java:47)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.ParserSPARQL11.perform(ParserSPARQL11.java:96)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.ParserSPARQL11.parse$(ParserSPARQL11.java:51)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser.parse(SPARQLParser.java:34)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.StreamQueryFactory.parse(StreamQueryFactory.java:82)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.StreamQueryFactory.create(StreamQueryFactory.java:47)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.StreamQueryFactory.create(StreamQueryFactory.java:33)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.StreamQueryFactory.create(StreamQueryFactory.java:21)
+	at uk.ac.soton.ldanalytics.sparql2stream.test.main(test.java:228)
+2016-09-01 14:52:58 WARN  ParserSPARQL11:88 - Unexpected throwable: 
+uk.ac.soton.ldanalytics.sparql2stream.parser.lang.ParseException: Encountered " "{" "{ "" at line 8, column 7.
+Was expecting:
+    "window" ...
+    
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.generateParseException(SPARQLParser11.java:5404)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.jj_consume_token(SPARQLParser11.java:5324)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.GroupGraphPattern(SPARQLParser11.java:1793)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.WhereClause(SPARQLParser11.java:521)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.SelectQuery(SPARQLParser11.java:131)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.Query(SPARQLParser11.java:29)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.QueryUnit(SPARQLParser11.java:20)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.ParserSPARQL11$1.exec(ParserSPARQL11.java:47)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.ParserSPARQL11.perform(ParserSPARQL11.java:96)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.ParserSPARQL11.parse$(ParserSPARQL11.java:51)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser.parse(SPARQLParser.java:34)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.StreamQueryFactory.parse(StreamQueryFactory.java:82)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.StreamQueryFactory.create(StreamQueryFactory.java:47)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.StreamQueryFactory.create(StreamQueryFactory.java:33)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.StreamQueryFactory.create(StreamQueryFactory.java:21)
+	at uk.ac.soton.ldanalytics.sparql2stream.test.main(test.java:228)
+2016-09-01 14:53:15 WARN  ParserSPARQL11:88 - Unexpected throwable: 
+uk.ac.soton.ldanalytics.sparql2stream.parser.lang.ParseException: Encountered " <PNAME_LN> "weather:test "" at line 9, column 10.
+Was expecting:
+    "select" ...
+    
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.generateParseException(SPARQLParser11.java:5404)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.jj_consume_token(SPARQLParser11.java:5324)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.SelectClause(SPARQLParser11.java:143)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.SubSelect(SPARQLParser11.java:136)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.GroupGraphPattern(SPARQLParser11.java:1799)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.WhereClause(SPARQLParser11.java:521)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.SelectQuery(SPARQLParser11.java:131)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.Query(SPARQLParser11.java:29)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.QueryUnit(SPARQLParser11.java:20)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.ParserSPARQL11$1.exec(ParserSPARQL11.java:47)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.ParserSPARQL11.perform(ParserSPARQL11.java:96)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.ParserSPARQL11.parse$(ParserSPARQL11.java:51)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser.parse(SPARQLParser.java:34)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.StreamQueryFactory.parse(StreamQueryFactory.java:82)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.StreamQueryFactory.create(StreamQueryFactory.java:47)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.StreamQueryFactory.create(StreamQueryFactory.java:33)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.StreamQueryFactory.create(StreamQueryFactory.java:21)
+	at uk.ac.soton.ldanalytics.sparql2stream.test.main(test.java:228)
+2016-09-01 15:24:39 WARN  ParserSPARQL11:88 - Unexpected throwable: 
+uk.ac.soton.ldanalytics.sparql2stream.parser.lang.ParseException: Encountered " <PNAME_LN> "weather:test "" at line 9, column 10.
+Was expecting:
+    "select" ...
+    
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.generateParseException(SPARQLParser11.java:5404)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.jj_consume_token(SPARQLParser11.java:5324)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.SelectClause(SPARQLParser11.java:143)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.SubSelect(SPARQLParser11.java:136)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.GroupGraphPattern(SPARQLParser11.java:1799)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.WhereClause(SPARQLParser11.java:521)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.SelectQuery(SPARQLParser11.java:131)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.Query(SPARQLParser11.java:29)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.QueryUnit(SPARQLParser11.java:20)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.ParserSPARQL11$1.exec(ParserSPARQL11.java:47)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.ParserSPARQL11.perform(ParserSPARQL11.java:96)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.ParserSPARQL11.parse$(ParserSPARQL11.java:51)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser.parse(SPARQLParser.java:34)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.StreamQueryFactory.parse(StreamQueryFactory.java:82)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.StreamQueryFactory.create(StreamQueryFactory.java:47)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.StreamQueryFactory.create(StreamQueryFactory.java:33)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.StreamQueryFactory.create(StreamQueryFactory.java:21)
+	at uk.ac.soton.ldanalytics.sparql2stream.test.main(test.java:228)
