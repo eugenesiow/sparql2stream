@@ -277,3 +277,27 @@ Was expecting:
 	at uk.ac.soton.ldanalytics.sparql2stream.parser.StreamQueryFactory.create(StreamQueryFactory.java:33)
 	at uk.ac.soton.ldanalytics.sparql2stream.parser.StreamQueryFactory.create(StreamQueryFactory.java:21)
 	at uk.ac.soton.ldanalytics.sparql2stream.test.main(test.java:228)
+2016-09-01 16:53:23 WARN  ParserSPARQL11:88 - Unexpected throwable: 
+uk.ac.soton.ldanalytics.sparql2stream.parser.lang.ParseException: Encountered " "window" "WINDOW "" at line 7, column 12.
+Was expecting one of:
+    <IRIref> ...
+    <PNAME_NS> ...
+    <PNAME_LN> ...
+    "stream" ...
+    
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.generateParseException(SPARQLParser11.java:5443)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.jj_consume_token(SPARQLParser11.java:5363)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.NamedClause(SPARQLParser11.java:445)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.DatasetClause(SPARQLParser11.java:415)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.SelectQuery(SPARQLParser11.java:129)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.Query(SPARQLParser11.java:29)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser11.QueryUnit(SPARQLParser11.java:20)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.ParserSPARQL11$1.exec(ParserSPARQL11.java:47)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.ParserSPARQL11.perform(ParserSPARQL11.java:96)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.ParserSPARQL11.parse$(ParserSPARQL11.java:51)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.lang.SPARQLParser.parse(SPARQLParser.java:34)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.StreamQueryFactory.parse(StreamQueryFactory.java:82)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.StreamQueryFactory.create(StreamQueryFactory.java:47)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.StreamQueryFactory.create(StreamQueryFactory.java:33)
+	at uk.ac.soton.ldanalytics.sparql2stream.parser.StreamQueryFactory.create(StreamQueryFactory.java:21)
+	at uk.ac.soton.ldanalytics.sparql2stream.test.main(test.java:228)

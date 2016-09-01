@@ -166,13 +166,14 @@ public class test {
 //				"      om-owl:result [om-owl:floatValue ?windSpeed] .\n" + 
 //				"} GROUP BY ?sensor \n" + 
 //				"HAVING ( AVG(?temperature) < \"32\"^^xsd:float  &&  MIN(?windSpeed) > \"40.0\"^^xsd:float ) ";
+		//PT10M
 		String queryStr = "PREFIX om-owl: <http://knoesis.wright.edu/ssw/ont/sensor-observation.owl#>\n" + 
 				"PREFIX weather: <http://knoesis.wright.edu/ssw/ont/weather.owl#>\n" + 
 				"PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" + 
 				"PREFIX owl-time: <http://www.w3.org/2006/time#>\n" + 
 				"\n" + 
 				"SELECT ?sensor\n" + 
-				"FROM NAMED STREAM <http://www.cwi.nl/SRBench/observations> [RANGE 1h STEP]\n" + 
+				"FROM NAMED WINDOW :win ON <http://www.cwi.nl/SRBench/observations> [RANGE 1h STEP]\n" + 
 				"WHERE {\n" + 
 				"  WINDOW :win { ?sensor om-owl:generatedObservation [a weather:SnowfallObservation ] ;\n" + 
 				"          om-owl:generatedObservation ?o1 ;\n" + 

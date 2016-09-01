@@ -75,7 +75,7 @@ public interface SPARQLParser11Constants {
   /** RegularExpression Id. */
   int FROM = 37;
   /** RegularExpression Id. */
-  int STREAM = 38;
+  int ON = 38;
   /** RegularExpression Id. */
   int RANGE = 39;
   /** RegularExpression Id. */
@@ -458,7 +458,7 @@ public interface SPARQLParser11Constants {
     "\"desc\"",
     "\"named\"",
     "\"from\"",
-    "\"stream\"",
+    "\"on\"",
     "\"range\"",
     "\"tumbling\"",
     "\"step\"",

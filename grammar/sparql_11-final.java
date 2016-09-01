@@ -195,21 +195,23 @@ void NamedGraphClause() : { String iri ; }
     getQuery().addNamedGraphURI(iri) ;
   }
 }
-void StreamClause() : { String iri ; }
+void StreamClause() : { String win; String iri ; }
 {
-  <STREAM>
+  <WINDOW>
+  win = prefixless()
+  <ON>
   iri = SourceSelector()
-  StreamParamsClause(iri)
+  StreamParamsClause(win,iri)
 }
-void StreamParamsClause(String iri) : {} 
+void StreamParamsClause(String win, String iri) : {} 
 {
 	<LBRACKET>
 	(<LAST> {
-		getQuery().addNamedGraphURI(iri+";LAST") ;
-	} | <RANGE> { RangeClause(iri); })
+		getQuery().addNamedGraphURI(iri+";"+win+";LAST") ;
+	} | <RANGE> { RangeClause(win,iri); })
 	<RBRACKET>
 }
-void RangeClause(String iri) : { Token i; Token t; } 
+void RangeClause(String win, String iri) : { Token i; Token t; } 
 {
 	i = <INTEGER>
 	t = <TIMEUNIT>
@@ -217,9 +219,9 @@ void RangeClause(String iri) : { Token i; Token t; }
 		iri = iri+";"+i.image+";"+t.image;
 	}
 	(<TUMBLING> {
-		getQuery().addNamedGraphURI(iri+";TUMBLING") ;
+		getQuery().addNamedGraphURI(iri+";"+win+";TUMBLING") ;
 	}|<STEP> {
-		getQuery().addNamedGraphURI(iri+";STEP") ;
+		getQuery().addNamedGraphURI(iri+";"+win+";STEP") ;
 	})
 }
 String SourceSelector() : { String iri ; }
@@ -1536,7 +1538,7 @@ TOKEN [IGNORE_CASE] :
 | < DESC: "desc" >
 | < NAMED: "named" >
 | < FROM: "from" >
-| < STREAM: "stream" >
+| < ON: "on" >
 | < RANGE: "range" >
 | < TUMBLING: "tumbling" >
 | < STEP: "step" >
