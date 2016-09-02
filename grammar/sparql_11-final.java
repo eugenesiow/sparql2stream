@@ -220,7 +220,7 @@ void RangeClause(String win, String iri) : { Token i; Token t; }
 	}
 	(<TUMBLING> {
 		getQuery().addNamedGraphURI(iri+";"+win+";TUMBLING") ;
-	}|<STEP> {
+	}|{
 		getQuery().addNamedGraphURI(iri+";"+win+";STEP") ;
 	})
 }

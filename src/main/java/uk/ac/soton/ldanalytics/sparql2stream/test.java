@@ -173,7 +173,7 @@ public class test {
 				"PREFIX owl-time: <http://www.w3.org/2006/time#>\n" + 
 				"\n" + 
 				"SELECT ?sensor\n" + 
-				"FROM NAMED WINDOW :win ON <http://www.cwi.nl/SRBench/observations> [RANGE 1h STEP]\n" + 
+				"FROM NAMED WINDOW :win ON <http://www.cwi.nl/SRBench/observations> [RANGE 1h]\n" + 
 				"WHERE {\n" + 
 				"  WINDOW :win { ?sensor om-owl:generatedObservation [a weather:SnowfallObservation ] ;\n" + 
 				"          om-owl:generatedObservation ?o1 ;\n" + 

@@ -1,0 +1,6 @@
+_:1a <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.oclc.org/NET/ssnx/ssn#Observation>. 
+	_:1a <http://purl.oclc.org/NET/ssnx/ssn#observedProperty> <http://www.insight-centre.org/dataset/SampleEventService#Property-b9f96475-bd7f-4868-8a3b-4d01ff8f9359>.
+	_:1a <http://purl.oclc.org/NET/sao/hasValue> _:2a.
+	_:1a <http://purl.oclc.org/NET/ssnx/ssn#observedBy> <http://www.insight-centre.org/dataset/SampleEventService#UserLocationService>.
+_:2a <http://www.insight-centre.org/citytraffic#hasLatitude> "UserLocationService.lat".
+	_:2a <http://www.insight-centre.org/citytraffic#hasLongitude> "UserLocationService.lon".

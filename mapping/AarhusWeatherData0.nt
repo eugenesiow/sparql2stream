@@ -1,0 +1,12 @@
+<http://www.insight-centre.org/dataset/SampleEventService#Property-66462839-6a65-4d5a-acc6-ffb627d8dc14> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.insight-centre.org/citytraffic#Temperature>.
+<http://www.insight-centre.org/dataset/SampleEventService#Property-7e96ab11-820a-42b9-aab2-b6c4ebf88de2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.insight-centre.org/citytraffic#Humidity>.
+<http://www.insight-centre.org/dataset/SampleEventService#Property-5cb2e2d7-8773-4e66-9690-6cfb3591c17b> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.insight-centre.org/citytraffic#WindSpeed>.
+_:1a <http://purl.oclc.org/NET/ssnx/ssn#observedProperty> <http://www.insight-centre.org/dataset/SampleEventService#Property-66462839-6a65-4d5a-acc6-ffb627d8dc14>.
+	_:1a <http://purl.oclc.org/NET/sao/hasValue> "AarhusWeatherData0.tempm".
+	_:1a <http://purl.oclc.org/NET/ssnx/ssn#observedBy> <http://www.insight-centre.org/dataset/SampleEventService#AarhusWeatherData0>.
+_:1b <http://purl.oclc.org/NET/ssnx/ssn#observedProperty> <http://www.insight-centre.org/dataset/SampleEventService#Property-7e96ab11-820a-42b9-aab2-b6c4ebf88de2>.
+	_:1b <http://purl.oclc.org/NET/sao/hasValue> "AarhusWeatherData0.hum".
+	_:1b <http://purl.oclc.org/NET/ssnx/ssn#observedBy> <http://www.insight-centre.org/dataset/SampleEventService#AarhusWeatherData0>.
+_:1c <http://purl.oclc.org/NET/ssnx/ssn#observedProperty> <http://www.insight-centre.org/dataset/SampleEventService#Property-5cb2e2d7-8773-4e66-9690-6cfb3591c17b>.
+	_:1c <http://purl.oclc.org/NET/sao/hasValue> "AarhusWeatherData0.wspdm".
+	_:1c <http://purl.oclc.org/NET/ssnx/ssn#observedBy> <http://www.insight-centre.org/dataset/SampleEventService#AarhusWeatherData0>.
