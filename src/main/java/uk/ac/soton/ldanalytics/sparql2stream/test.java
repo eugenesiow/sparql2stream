@@ -10,9 +10,9 @@ import org.apache.jena.sparql.algebra.OpWalker;
 import uk.ac.soton.ldanalytics.sparql2sql.model.RdfTableMapping;
 import uk.ac.soton.ldanalytics.sparql2sql.model.RdfTableMappingJena;
 import uk.ac.soton.ldanalytics.sparql2sql.model.SparqlOpVisitor;
-import uk.ac.soton.ldanalytics.sparql2sql.util.FormatUtil;
 import uk.ac.soton.ldanalytics.sparql2sql.util.SQLFormatter;
 import uk.ac.soton.ldanalytics.sparql2stream.parser.StreamQueryFactory;
+import uk.ac.soton.ldanalytics.sparql2stream.util.StreamFormatUtil;
 
 public class test {
 	public static void main(String[] args) {
@@ -215,15 +215,16 @@ public class test {
 //		mapping.loadMapping("mapping/4UT01.nt");
 //		mapping.loadMapping("/Users/eugene/Downloads/knoesis_observations_map_meta/4UT01.nt");
 //		mapping.loadMapping("/Users/eugene/Downloads/knoesis_observations_ike_map_meta/HP001.nt");
-		mapping.loadMapping("/Users/eugene/Downloads/knoesis_observations_ike_map_snow/ALPHA.nt");
-//		mapping.loadMapping("mapping/smarthome_environment.nt");
+//		mapping.loadMapping("/Users/eugene/Downloads/knoesis_observations_ike_map_snow/ALPHA.nt");
+		mapping.loadMapping("mapping/smarthome_environment.nt");
 //		mapping.loadMapping("mapping/smarthome_sensors.nt");
 //		mapping.loadMapping("mapping/smarthome_meter.nt");
 //		mapping.loadMapping("mapping/smarthome_motion.nt");
 		
 //		System.out.println(queryStr);
 		
-		Map<String,String> streamCatalog = FormatUtil.loadStreamCatalog("streams/catalogue.txt");
+		Map<String,String> streamCatalog = StreamFormatUtil.loadStreamCatalog("streams/catalogue.txt");
+		Map<String,String> mappingCatalog = StreamFormatUtil.loadMappingCatalog("streams/mapping_catalogue.txt");
 		
 		long startTime = System.currentTimeMillis();
 		Query query = StreamQueryFactory.create(queryStr);
@@ -231,6 +232,7 @@ public class test {
 		System.out.println(op);
 		
 		SparqlOpVisitor v = new SparqlOpVisitor();
+		v.setMappingCatalog(mappingCatalog,"jena");
 		v.useMapping(mapping);
 		v.setNamedGraphs(query.getNamedGraphURIs());
 		v.setStreamCatalog(streamCatalog);

@@ -1,0 +1,5 @@
+http://www.cwi.nl/SRBench/observations,/Users/eugene/Downloads/knoesis_observations_ike_map_snow/ALPHA.nt
+http://iot.soton.ac.uk/smarthome/motion,mapping/smarthome_motion.nt
+http://iot.soton.ac.uk/smarthome/meter,mapping/smarthome_meter.nt
+http://iot.soton.ac.uk/smarthome/environment,mapping/smarthome_environment.nt
+http://iot.soton.ac.uk/smarthome/sensors,mapping/smarthome_sensors.nt
