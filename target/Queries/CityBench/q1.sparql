@@ -3,7 +3,7 @@ PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#>
 PREFIX ct: 	<http://www.insight-centre.org/citytraffic#>
 PREFIX ns: 	<http://www.insight-centre.org/dataset/SampleEventService#>
 
-SELECT ?obId1 ?obId2 ?v1 ?v2
+SELECT ?v1 ?v2
 FROM NAMED WINDOW :traffic1 ON <http://www.insight-centre.org/dataset/SampleEventService#AarhusTrafficData182955> [RANGE 3s]
 FROM NAMED WINDOW :traffic2 ON <http://www.insight-centre.org/dataset/SampleEventService#AarhusTrafficData158505> [RANGE 3s]
 WHERE {

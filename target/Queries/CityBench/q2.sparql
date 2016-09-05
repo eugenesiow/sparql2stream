@@ -1,0 +1,34 @@
+PREFIX sao: <http://purl.oclc.org/NET/sao/>
+PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#>
+PREFIX ct: 	<http://www.insight-centre.org/citytraffic#>
+PREFIX ns: 	<http://www.insight-centre.org/dataset/SampleEventService#>
+
+SELECT ?v1 ?v2 ?v3 ?v4
+FROM NAMED WINDOW :traffic ON <http://www.insight-centre.org/dataset/SampleEventService#AarhusTrafficData158505> [RANGE 3s]
+FROM NAMED WINDOW :weather ON <http://www.insight-centre.org/dataset/SampleEventService#AarhusWeatherData0> [RANGE 3s]
+WHERE {
+	WINDOW :weather {
+		?obId1 a ssn:Observation;
+			ssn:observedProperty ?p1;
+			sao:hasValue ?v1;
+			ssn:observedBy ns:AarhusWeatherData0.
+		?p1 a ct:Temperature.
+		?obId2 a ssn:Observation;
+			ssn:observedProperty ?p2;
+			sao:hasValue ?v2;
+			ssn:observedBy ns:AarhusWeatherData0.
+		?p2 a ct:Humidity.
+		?obId3 a ssn:Observation;
+			ssn:observedProperty ?p3;
+			sao:hasValue ?v3;
+			ssn:observedBy ns:AarhusWeatherData0.
+		?p3 a ct:WindSpeed.
+	}
+	WINDOW :traffic {
+		?obId4 a ssn:Observation;
+			ssn:observedProperty ?p4;
+			sao:hasValue ?v4;
+			ssn:observedBy ns:AarhusTrafficData158505.
+		?p4 a ct:CongestionLevel.
+	}
+}
