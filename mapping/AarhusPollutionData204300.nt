@@ -1,0 +1,4 @@
+_:1a <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.oclc.org/NET/ssnx/ssn#Observation>.
+	_:1a <http://purl.oclc.org/NET/ssnx/ssn#observedProperty> <http://www.insight-centre.org/dataset/SampleEventService#Property-a23c8f62-0fc8-4090-8cfc-d6e0d3d0b83a>.
+	_:1a <http://purl.oclc.org/NET/sao/hasValue> "AarhusPollutionData204300.api".
+	_:1a <http://purl.oclc.org/NET/ssnx/ssn#observedBy> <http://www.insight-centre.org/dataset/SampleEventService#AarhusPollutionData204300>.

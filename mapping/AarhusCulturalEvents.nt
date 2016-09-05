@@ -1,0 +1,6 @@
+_:1a <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.oclc.org/NET/ssnx/ssn#Observation>.
+	_:1a <http://purl.oclc.org/NET/sao/value> "AarhusCulturalEvents.title".
+	_:1a <http://purl.oclc.org/NET/ssnx/ssn#featureOfInterest> _:1b.
+_:1b <http://www.insight-centre.org/citytraffic#hasFirstNode> _:1c.
+_:1c <http://www.insight-centre.org/citytraffic#hasLatitude> "AarhusCulturalEvents.lat".
+	_:1c <http://www.insight-centre.org/citytraffic#hasLongitude> "AarhusCulturalEvents.lon".

@@ -1,0 +1,5 @@
+_:1a <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.oclc.org/NET/ssnx/ssn#Observation>.
+	_:1a <http://purl.oclc.org/NET/ssnx/ssn#observedProperty> <http://www.insight-centre.org/dataset/SampleEventService#parkingproperty-4>.
+	_:1a <http://purl.oclc.org/NET/sao/hasValue> "AarhusParkingDataSKOLEBAKKEN.totalspaces".
+	_:1a <http://purl.oclc.org/NET/ssnx/ssn#observedBy> <http://www.insight-centre.org/dataset/SampleEventService#AarhusParkingDataSKOLEBAKKEN>.
+<http://www.insight-centre.org/dataset/SampleEventService#parkingproperty-4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.insight-centre.org/citytraffic#ParkingVacancy>.
