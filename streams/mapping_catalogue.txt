@@ -3,3 +3,5 @@ http://iot.soton.ac.uk/smarthome/motion,mapping/smarthome_motion.nt
 http://iot.soton.ac.uk/smarthome/meter,mapping/smarthome_meter.nt
 http://iot.soton.ac.uk/smarthome/environment,mapping/smarthome_environment.nt
 http://iot.soton.ac.uk/smarthome/sensors,mapping/smarthome_sensors.nt
+http://www.insight-centre.org/dataset/SampleEventService#AarhusTrafficData182955,mapping/AarhusTrafficData182955.nt
+http://www.insight-centre.org/dataset/SampleEventService#AarhusTrafficData158505,mapping/AarhusTrafficData158505.nt
