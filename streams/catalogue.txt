@@ -5,3 +5,5 @@ environment,http://iot.soton.ac.uk/smarthome/environment
 AarhusTrafficData182955,http://www.insight-centre.org/dataset/SampleEventService#AarhusTrafficData182955
 AarhusTrafficData158505,http://www.insight-centre.org/dataset/SampleEventService#AarhusTrafficData158505
 AarhusWeatherData0,http://www.insight-centre.org/dataset/SampleEventService#AarhusWeatherData0
+AarhusCulturalEvents,http://www.insight-centre.org/dataset/SampleEventService#AarhusCulturalEvents
+UserLocationService,http://www.insight-centre.org/dataset/SampleEventService#UserLocationService

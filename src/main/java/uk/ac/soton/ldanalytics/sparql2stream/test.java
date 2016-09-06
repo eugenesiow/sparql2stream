@@ -215,24 +215,27 @@ public class test {
 				"PREFIX ct: 	<http://www.insight-centre.org/citytraffic#>\n" + 
 				"PREFIX ns: 	<http://www.insight-centre.org/dataset/SampleEventService#>\n" + 
 				"\n" + 
-				"SELECT (((?v1+?v2)/2) as ?avgCongest)\n" + 
-				"FROM NAMED WINDOW :traffic1 ON <http://www.insight-centre.org/dataset/SampleEventService#AarhusTrafficData182955> [RANGE 3s]\n" + 
-				"FROM NAMED WINDOW :traffic2 ON <http://www.insight-centre.org/dataset/SampleEventService#AarhusTrafficData158505> [RANGE 3s]\n" + 
+				"SELECT ?title ?lat1 ?lon1 ?lat2 ?lon2\n" + 
+				"FROM NAMED WINDOW :user ON <http://www.insight-centre.org/dataset/SampleEventService#UserLocationService> [RANGE 3s]\n" + 
+				"FROM NAMED <http://www.insight-centre.org/dataset/SampleEventService#AarhusCulturalEvents>\n" + 
 				"WHERE {\n" + 
-				"	WINDOW :traffic1 {\n" + 
-				"		?obId1 a ssn:Observation;\n" + 
-				"			ssn:observedProperty ?p1;\n" + 
-				"			sao:hasValue ?v1;\n" + 
-				"			ssn:observedBy ns:AarhusTrafficData182955.\n" + 
-				"		?p1 a ct:CongestionLevel.\n" + 
+				"	GRAPH ns:AarhusCulturalEvents {\n" + 
+				"		?evtId a ssn:Observation;\n" + 
+				"			sao:value ?title;\n" + 
+				"			ssn:featureOfInterest ?foi.\n" + 
+				"		?foi ct:hasFirstNode ?node.\n" + 
+				"		?node ct:hasLatitude ?lat1;\n" + 
+				"			ct:hasLongitude ?lon1.\n" + 
 				"	}\n" + 
-				"	WINDOW :traffic2 {\n" + 
+				"	WINDOW :user {\n" + 
 				"		?obId2 a ssn:Observation;\n" + 
 				"			ssn:observedProperty ?p2;\n" + 
 				"			sao:hasValue ?v2;\n" + 
-				"			ssn:observedBy ns:AarhusTrafficData158505.\n" + 
-				"		?p2 a ct:CongestionLevel.\n" + 
+				"			ssn:observedBy ns:UserLocationService.\n" + 
+				"		?v2 ct:hasLatitude ?lat2;\n" + 
+				"			ct:hasLongitude ?lon2.\n" + 
 				"	}\n" + 
+				"	#FILTER (((?lat2-?lat1)*(?lat2-?lat1)+(?lon2-?lon1)*(?lon2-?lon1))<0.1)\n" + 
 				"}";
 //		String queryStr = "PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#>\n" + 
 //				"PREFIX iotsn: <http://iot.soton.ac.uk/smarthome/sensor#>\n" + 

@@ -6,3 +6,5 @@ http://iot.soton.ac.uk/smarthome/sensors,mapping/smarthome_sensors.nt
 http://www.insight-centre.org/dataset/SampleEventService#AarhusTrafficData182955,mapping/AarhusTrafficData182955.nt
 http://www.insight-centre.org/dataset/SampleEventService#AarhusTrafficData158505,mapping/AarhusTrafficData158505.nt
 http://www.insight-centre.org/dataset/SampleEventService#AarhusWeatherData0,mapping/AarhusWeatherData0.nt
+http://www.insight-centre.org/dataset/SampleEventService#AarhusCulturalEvents,mapping/AarhusCulturalEvents.nt
+http://www.insight-centre.org/dataset/SampleEventService#UserLocationService,mapping/UserLocationService.nt

@@ -1,0 +1,27 @@
+PREFIX sao: <http://purl.oclc.org/NET/sao/>
+PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#>
+PREFIX ct: 	<http://www.insight-centre.org/citytraffic#>
+PREFIX ns: 	<http://www.insight-centre.org/dataset/SampleEventService#>
+
+SELECT ?title ?lat1 ?lon1 ?lat2 ?lon2
+FROM NAMED WINDOW :user ON <http://www.insight-centre.org/dataset/SampleEventService#UserLocationService> [RANGE 3s]
+FROM NAMED <http://www.insight-centre.org/dataset/SampleEventService#AarhusCulturalEvents>
+WHERE {
+	GRAPH ns:AarhusCulturalEvents {
+		?evtId a ssn:Observation;
+			sao:value ?title;
+			ssn:featureOfInterest ?foi.
+		?foi ct:hasFirstNode ?node.
+		?node ct:hasLatitude ?lat1;
+			ct:hasLongitude ?lon1.
+	}
+	WINDOW :user {
+		?obId2 a ssn:Observation;
+			ssn:observedProperty ?p2;
+			sao:hasValue ?v2;
+			ssn:observedBy ns:UserLocationService.
+		?v2 ct:hasLatitude ?lat2;
+			ct:hasLongitude ?lon2.
+	}
+	FILTER (((?lat2-?lat1)*(?lat2-?lat1)+(?lon2-?lon1)*(?lon2-?lon1))<0.1)
+}
