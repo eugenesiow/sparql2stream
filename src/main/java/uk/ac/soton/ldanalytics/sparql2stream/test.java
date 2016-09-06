@@ -186,64 +186,64 @@ public class test {
 //				"      om-owl:result [om-owl:floatValue ?windSpeed] . }\n" + 
 //				"} GROUP BY ?sensor \n" + 
 //				"HAVING ( AVG(?temperature) < \"32\"^^xsd:float  &&  MIN(?windSpeed) > \"40.0\"^^xsd:float ) ";
-		String queryStr = "PREFIX sao: <http://purl.oclc.org/NET/sao/>\n" + 
-				"PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#>\n" + 
-				"PREFIX ct: 	<http://www.insight-centre.org/citytraffic#>\n" + 
-				"PREFIX ns: 	<http://www.insight-centre.org/dataset/SampleEventService#>\n" + 
-				"\n" + 
-				"SELECT ?v1 ?v2\n" + 
-				"FROM NAMED WINDOW :traffic1 ON <http://www.insight-centre.org/dataset/SampleEventService#AarhusTrafficData182955> [RANGE 3s]\n" + 
-				"FROM NAMED WINDOW :traffic2 ON <http://www.insight-centre.org/dataset/SampleEventService#AarhusTrafficData158505> [RANGE 3s]\n" + 
-				"WHERE {\n" + 
-				"	WINDOW :traffic1 {\n" + 
-				"		?obId1 a ssn:Observation;\n" + 
-				"			ssn:observedProperty ?p1;\n" + 
-				"			sao:hasValue ?v1;\n" + 
-				"			ssn:observedBy ns:AarhusTrafficData182955.\n" + 
-				"		?p1 a ct:CongestionLevel.\n" + 
-				"	}\n" + 
-				"	WINDOW :traffic2 {\n" + 
-				"		?obId2 a ssn:Observation;\n" + 
-				"			ssn:observedProperty ?p2;\n" + 
-				"			sao:hasValue ?v2;\n" + 
-				"			ssn:observedBy ns:AarhusTrafficData158505.\n" + 
-				"		?p2 a ct:CongestionLevel.\n" + 
-				"	}\n" + 
-				"}";
 //		String queryStr = "PREFIX sao: <http://purl.oclc.org/NET/sao/>\n" + 
 //				"PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#>\n" + 
 //				"PREFIX ct: 	<http://www.insight-centre.org/citytraffic#>\n" + 
 //				"PREFIX ns: 	<http://www.insight-centre.org/dataset/SampleEventService#>\n" + 
 //				"\n" + 
-//				"SELECT ?v1 ?v2 ?v3 ?v4\n" + 
-//				"FROM NAMED WINDOW :traffic ON <http://www.insight-centre.org/dataset/SampleEventService#AarhusTrafficData158505> [RANGE 3s]\n" + 
-//				"FROM NAMED WINDOW :weather ON <http://www.insight-centre.org/dataset/SampleEventService#AarhusWeatherData0> [RANGE 3s]\n" + 
+//				"SELECT ?v1 ?v2\n" + 
+//				"FROM NAMED WINDOW :traffic1 ON <http://www.insight-centre.org/dataset/SampleEventService#AarhusTrafficData182955> [RANGE 3s]\n" + 
+//				"FROM NAMED WINDOW :traffic2 ON <http://www.insight-centre.org/dataset/SampleEventService#AarhusTrafficData158505> [RANGE 3s]\n" + 
 //				"WHERE {\n" + 
-//				"	WINDOW :weather {\n" + 
+//				"	WINDOW :traffic1 {\n" + 
 //				"		?obId1 a ssn:Observation;\n" + 
 //				"			ssn:observedProperty ?p1;\n" + 
 //				"			sao:hasValue ?v1;\n" + 
-//				"			ssn:observedBy ns:AarhusWeatherData0.\n" + 
-//				"		?p1 a ct:Temperature.\n" + 
+//				"			ssn:observedBy ns:AarhusTrafficData182955.\n" + 
+//				"		?p1 a ct:CongestionLevel.\n" + 
+//				"	}\n" + 
+//				"	WINDOW :traffic2 {\n" + 
 //				"		?obId2 a ssn:Observation;\n" + 
 //				"			ssn:observedProperty ?p2;\n" + 
 //				"			sao:hasValue ?v2;\n" + 
-//				"			ssn:observedBy ns:AarhusWeatherData0.\n" + 
-//				"		?p2 a ct:Humidity.\n" + 
-//				"		?obId3 a ssn:Observation;\n" + 
-//				"			ssn:observedProperty ?p3;\n" + 
-//				"			sao:hasValue ?v3;\n" + 
-//				"			ssn:observedBy ns:AarhusWeatherData0.\n" + 
-//				"		?p3 a ct:WindSpeed.\n" + 
-//				"	}\n" + 
-//				"	WINDOW :traffic {\n" + 
-//				"		?obId4 a ssn:Observation;\n" + 
-//				"			ssn:observedProperty ?p4;\n" + 
-//				"			sao:hasValue ?v4;\n" + 
 //				"			ssn:observedBy ns:AarhusTrafficData158505.\n" + 
-//				"		?p4 a ct:CongestionLevel.\n" + 
+//				"		?p2 a ct:CongestionLevel.\n" + 
 //				"	}\n" + 
 //				"}";
+		String queryStr = "PREFIX sao: <http://purl.oclc.org/NET/sao/>\n" + 
+				"PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#>\n" + 
+				"PREFIX ct: 	<http://www.insight-centre.org/citytraffic#>\n" + 
+				"PREFIX ns: 	<http://www.insight-centre.org/dataset/SampleEventService#>\n" + 
+				"\n" + 
+				"SELECT ?v1 ?v2 ?v3 ?v4\n" + 
+				"FROM NAMED WINDOW :traffic ON <http://www.insight-centre.org/dataset/SampleEventService#AarhusTrafficData158505> [RANGE 3s]\n" + 
+				"FROM NAMED WINDOW :weather ON <http://www.insight-centre.org/dataset/SampleEventService#AarhusWeatherData0> [RANGE 3s]\n" + 
+				"WHERE {\n" + 
+				"	WINDOW :weather {\n" + 
+				"		?obId1 a ssn:Observation;\n" + 
+				"			ssn:observedProperty ?p1;\n" + 
+				"			sao:hasValue ?v1;\n" + 
+				"			ssn:observedBy ns:AarhusWeatherData0.\n" + 
+				"		?p1 a ct:Temperature.\n" + 
+				"		?obId2 a ssn:Observation;\n" + 
+				"			ssn:observedProperty ?p2;\n" + 
+				"			sao:hasValue ?v2;\n" + 
+				"			ssn:observedBy ns:AarhusWeatherData0.\n" + 
+				"		?p2 a ct:Humidity.\n" + 
+				"		?obId3 a ssn:Observation;\n" + 
+				"			ssn:observedProperty ?p3;\n" + 
+				"			sao:hasValue ?v3;\n" + 
+				"			ssn:observedBy ns:AarhusWeatherData0.\n" + 
+				"		?p3 a ct:WindSpeed.\n" + 
+				"	}\n" + 
+				"	WINDOW :traffic {\n" + 
+				"		?obId4 a ssn:Observation;\n" + 
+				"			ssn:observedProperty ?p4;\n" + 
+				"			sao:hasValue ?v4;\n" + 
+				"			ssn:observedBy ns:AarhusTrafficData158505.\n" + 
+				"		?p4 a ct:CongestionLevel.\n" + 
+				"	}\n" + 
+				"}";
 //		String queryStr = "PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#>\n" + 
 //				"PREFIX iotsn: <http://iot.soton.ac.uk/smarthome/sensor#>\n" + 
 //				"PREFIX iot: <http://purl.oclc.org/NET/iot#>\n" + 
