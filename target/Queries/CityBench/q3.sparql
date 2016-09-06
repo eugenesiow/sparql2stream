@@ -1,0 +1,24 @@
+PREFIX sao: <http://purl.oclc.org/NET/sao/>
+PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#>
+PREFIX ct: 	<http://www.insight-centre.org/citytraffic#>
+PREFIX ns: 	<http://www.insight-centre.org/dataset/SampleEventService#>
+
+SELECT (((?v1+?v2)/2) as ?avgCongest)
+FROM NAMED WINDOW :traffic1 ON <http://www.insight-centre.org/dataset/SampleEventService#AarhusTrafficData182955> [RANGE 3s]
+FROM NAMED WINDOW :traffic2 ON <http://www.insight-centre.org/dataset/SampleEventService#AarhusTrafficData158505> [RANGE 3s]
+WHERE {
+	WINDOW :traffic1 {
+		?obId1 a ssn:Observation;
+			ssn:observedProperty ?p1;
+			sao:hasValue ?v1;
+			ssn:observedBy ns:AarhusTrafficData182955.
+		?p1 a ct:CongestionLevel.
+	}
+	WINDOW :traffic2 {
+		?obId2 a ssn:Observation;
+			ssn:observedProperty ?p2;
+			sao:hasValue ?v2;
+			ssn:observedBy ns:AarhusTrafficData158505.
+		?p2 a ct:CongestionLevel.
+	}
+}
