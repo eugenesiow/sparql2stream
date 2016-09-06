@@ -1,4 +1,4 @@
 _:1a <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.oclc.org/NET/ssnx/ssn#Observation>.
 	_:1a <http://purl.oclc.org/NET/ssnx/ssn#observedProperty> <http://www.insight-centre.org/dataset/SampleEventService#Property-87bf19d1-1813-4cd3-8f34-f14b11bc8b4e>.
-	_:1a <http://purl.oclc.org/NET/sao/hasValue> "AarhusPollutionData197626.api".
+	_:1a <http://purl.oclc.org/NET/sao/hasValue> "AarhusPollutionData197626.api"^^<http://iot.soton.ac.uk/s2s/s2sml#literalMap>.
 	_:1a <http://purl.oclc.org/NET/ssnx/ssn#observedBy> <http://www.insight-centre.org/dataset/SampleEventService#AarhusPollutionData197626>.

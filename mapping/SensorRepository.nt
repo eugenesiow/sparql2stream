@@ -1,4 +1,4 @@
 <http://www.insight-centre.org/dataset/SampleEventService#{SensorRepository.propId}> <http://purl.oclc.org/NET/ssnx/ssn#isPropertyOf> _:1b.
 	<http://www.insight-centre.org/dataset/SampleEventService#{SensorRepository.propId}> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.insight-centre.org/citytraffic#{SensorRepository.type}>.
-_:1b <http://www.insight-centre.org/citytraffic#hasStartLatitude> "SensorRepository.lat".
-	_:1b <http://www.insight-centre.org/citytraffic#hasStartLongitude> "SensorRepository.lon".
+_:1b <http://www.insight-centre.org/citytraffic#hasStartLatitude> "SensorRepository.lat"^^<http://iot.soton.ac.uk/s2s/s2sml#literalMap>.
+	_:1b <http://www.insight-centre.org/citytraffic#hasStartLongitude> "SensorRepository.lon"^^<http://iot.soton.ac.uk/s2s/s2sml#literalMap>.
