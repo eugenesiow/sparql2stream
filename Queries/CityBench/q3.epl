@@ -1,0 +1,5 @@
+    SELECT
+        ( ( AarhusTrafficData182955.congestion_level + AarhusTrafficData158505.congestion_level ) / 2 ) AS avgCongest 
+    FROM
+        AarhusTrafficData182955.win:time(3 sec) ,
+        AarhusTrafficData158505.win:time(3 sec)    

@@ -235,7 +235,7 @@ public class test {
 				"		?v2 ct:hasLatitude ?lat2;\n" + 
 				"			ct:hasLongitude ?lon2.\n" + 
 				"	}\n" + 
-				"	#FILTER (((?lat2-?lat1)*(?lat2-?lat1)+(?lon2-?lon1)*(?lon2-?lon1))<0.1)\n" + 
+				"	FILTER (((?lat2-?lat1)*(?lat2-?lat1)+(?lon2-?lon1)*(?lon2-?lon1))<0.1)\n" + 
 				"}";
 //		String queryStr = "PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#>\n" + 
 //				"PREFIX iotsn: <http://iot.soton.ac.uk/smarthome/sensor#>\n" + 
