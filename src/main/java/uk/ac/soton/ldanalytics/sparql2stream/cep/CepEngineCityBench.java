@@ -9,13 +9,15 @@ import uk.ac.soton.ldanalytics.sparql2stream.CityBench.TrafficStream;
 import uk.ac.soton.ldanalytics.sparql2stream.CityBench.UserLocationStream;
 import uk.ac.soton.ldanalytics.sparql2stream.CityBench.WeatherStream;
 
+import com.espertech.esper.client.Configuration;
+import com.espertech.esper.client.ConfigurationDBRef;
 import com.espertech.esper.client.EPServiceProvider;
 import com.espertech.esper.client.EPServiceProviderManager;
 import com.espertech.esper.client.EPStatement;
 
 public class CepEngineCityBench {
 	public static void main(String[] args) {
-		testQ3();
+		testQ4();
 	}
 	
 	public static void testQ1() {
@@ -97,7 +99,16 @@ public class CepEngineCityBench {
 	}
 	
 	public static void testQ4() {
-		EPServiceProvider epService = EPServiceProviderManager.getProvider("engine_test");
+		ConfigurationDBRef dbConfig = new ConfigurationDBRef();
+		dbConfig.setDriverManagerConnection("org.postgresql.Driver",
+		                                    "jdbc:postgresql://localhost:5432/database_name", 
+		                                    "user", 
+		                                    "password");
+
+		Configuration engineConfig = new Configuration();
+		engineConfig.addDatabaseReference("AarhusCulturalEvents", dbConfig);
+		
+		EPServiceProvider epService = EPServiceProviderManager.getProvider("engine_test",engineConfig);
 		UserLocationStream UserLocationService = new UserLocationStream(epService,"UserLocationService");
 		UserLocationService.setupSourceFile("streams/UserLocationService.stream");
 		String stmt = "";

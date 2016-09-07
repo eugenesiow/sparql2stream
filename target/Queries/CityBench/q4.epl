@@ -10,18 +10,6 @@
     WHERE
         (
             (
-                UserLocationService.lat-lat1
-            )*(
-                UserLocationService.lat-lat1
-            )
-        )+(
-            (
-                UserLocationService.lon-lon1
-            )*(
-                UserLocationService.lon-lon1
-            )
-        )(
-            (
                 (
                     UserLocationService.lat-lat1
                 )*(
