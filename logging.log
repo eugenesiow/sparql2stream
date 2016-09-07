@@ -325,3 +325,16 @@ Was expecting one of:
 	at uk.ac.soton.ldanalytics.sparql2stream.parser.StreamQueryFactory.create(StreamQueryFactory.java:33)
 	at uk.ac.soton.ldanalytics.sparql2stream.parser.StreamQueryFactory.create(StreamQueryFactory.java:21)
 	at uk.ac.soton.ldanalytics.sparql2stream.test.main(test.java:230)
+2016-09-07 17:20:55 INFO  EPServiceProviderImpl:415 - Initializing engine URI 'engine_test' version 5.3.0
+2016-09-07 17:21:32 INFO  EPServiceProviderImpl:415 - Initializing engine URI 'engine_test' version 5.3.0
+2016-09-07 17:23:26 INFO  EPServiceProviderImpl:415 - Initializing engine URI 'engine_test' version 5.3.0
+2016-09-07 17:33:40 INFO  EPServiceProviderImpl:415 - Initializing engine URI 'engine_test' version 5.3.0
+2016-09-07 17:33:41 INFO  EPServiceProviderImpl:325 - Destroying engine URI 'engine_test'
+2016-09-07 17:36:04 INFO  EPServiceProviderImpl:415 - Initializing engine URI 'engine_test' version 5.3.0
+2016-09-07 17:36:05 INFO  EPServiceProviderImpl:325 - Destroying engine URI 'engine_test'
+2016-09-07 17:43:01 INFO  EPServiceProviderImpl:415 - Initializing engine URI 'engine_test' version 5.3.0
+2016-09-07 17:43:49 INFO  EPServiceProviderImpl:415 - Initializing engine URI 'engine_test' version 5.3.0
+2016-09-07 17:43:49 INFO  EPServiceProviderImpl:325 - Destroying engine URI 'engine_test'
+2016-09-07 17:43:57 INFO  EPServiceProviderImpl:415 - Initializing engine URI 'engine_test' version 5.3.0
+2016-09-07 17:44:14 INFO  EPServiceProviderImpl:415 - Initializing engine URI 'engine_test' version 5.3.0
+2016-09-07 17:44:15 INFO  EPServiceProviderImpl:325 - Destroying engine URI 'engine_test'

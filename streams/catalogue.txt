@@ -7,3 +7,4 @@ AarhusTrafficData158505,http://www.insight-centre.org/dataset/SampleEventService
 AarhusWeatherData0,http://www.insight-centre.org/dataset/SampleEventService#AarhusWeatherData0
 AarhusCulturalEvents,http://www.insight-centre.org/dataset/SampleEventService#AarhusCulturalEvents
 UserLocationService,http://www.insight-centre.org/dataset/SampleEventService#UserLocationService
+SensorRepository,http://www.insight-centre.org/dataset/SampleEventService#SensorRepository

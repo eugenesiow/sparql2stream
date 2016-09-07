@@ -1,7 +1,7 @@
 /**
  * 
  */
-package uk.ac.soton.ldanalytics.sparql2stream;
+package uk.ac.soton.ldanalytics.sparql2stream.CityBench;
 
 import static org.junit.Assert.*;
 
@@ -29,21 +29,23 @@ import uk.ac.soton.ldanalytics.sparql2stream.util.StreamFormatUtil;
  */
 public class CityBenchTest {
 
+	String[] testSet = {"q1","q2","q3","q4"};
+	
 	@Test
-	public void testQueries() {
+	public void testQueryGeneration() {
 		//load queries
 		String queryPath = "Queries/CityBench/";
 		String resultsPath = "Queries/CityBench/";
 		
 		RdfTableMapping mapping = new RdfTableMappingJena();
-		mapping.loadMapping("mapping/smarthome_environment.nt");
+		mapping.loadMapping("mapping/SensorRepository.nt");
 		Map<String,String> streamCatalog = StreamFormatUtil.loadStreamCatalog("streams/catalogue.txt");
 		Map<String,String> mappingCatalog = StreamFormatUtil.loadMappingCatalog("streams/mapping_catalogue.txt");
 		
-		for(int i=0;i<4;i++) {
+		for(String queryName:testSet) {
 			try {
-				String queryStr = FileUtils.readFileToString(new File(queryPath + "q" + (i+1) + ".sparql"));
-				String resultStr = FileUtils.readFileToString(new File(resultsPath + "q" + (i+1) + ".epl"));
+				String queryStr = FileUtils.readFileToString(new File(queryPath + queryName + ".sparql"));
+				String resultStr = FileUtils.readFileToString(new File(resultsPath + queryName + ".epl"));
 				Query query = StreamQueryFactory.create(queryStr);
 				Op op = Algebra.compile(query);
 				

@@ -1,5 +1,5 @@
 <http://www.insight-centre.org/dataset/SampleEventService#Property-11d60592-7d15-4934-9e23-f1b38df90fd5> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.insight-centre.org/citytraffic#CongestionLevel>.
 _:1a <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.oclc.org/NET/ssnx/ssn#Observation>.
 	_:1a <http://purl.oclc.org/NET/ssnx/ssn#observedProperty> <http://www.insight-centre.org/dataset/SampleEventService#Property-11d60592-7d15-4934-9e23-f1b38df90fd5>.
-	_:1a <http://purl.oclc.org/NET/sao/hasValue> "AarhusTrafficData182955.congestion_level"^^<http://iot.soton.ac.uk/s2s/s2sml#literalMap>.
+	_:1a <http://purl.oclc.org/NET/sao/hasValue> "AarhusTrafficData182955.congestionLevel"^^<http://iot.soton.ac.uk/s2s/s2sml#literalMap>.
 	_:1a <http://purl.oclc.org/NET/ssnx/ssn#observedBy> <http://www.insight-centre.org/dataset/SampleEventService#AarhusTrafficData182955>.

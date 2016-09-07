@@ -216,9 +216,13 @@ public class test {
 				"PREFIX ns: 	<http://www.insight-centre.org/dataset/SampleEventService#>\n" + 
 				"\n" + 
 				"SELECT ?title ?lat1 ?lon1 ?lat2 ?lon2\n" + 
-				"FROM NAMED WINDOW :user ON <http://www.insight-centre.org/dataset/SampleEventService#UserLocationService> [RANGE 3s]\n" + 
+				"FROM NAMED WINDOW :traffic ON <http://www.insight-centre.org/dataset/SampleEventService#AarhusTrafficData158505> [RANGE 3s]\n" + 
 				"FROM NAMED <http://www.insight-centre.org/dataset/SampleEventService#AarhusCulturalEvents>\n" + 
 				"WHERE {\n" + 
+				"	?p2 a ct:CongestionLevel;\n" + 
+				"		ssn:isPropertyOf ?foi2.\n" + 
+				"	?foi2 ct:hasStartLatitude ?lat2;\n" + 
+				"		ct:hasStartLongitude ?lon2.\n" + 
 				"	GRAPH ns:AarhusCulturalEvents {\n" + 
 				"		?evtId a ssn:Observation;\n" + 
 				"			sao:value ?title;\n" + 
@@ -227,13 +231,11 @@ public class test {
 				"		?node ct:hasLatitude ?lat1;\n" + 
 				"			ct:hasLongitude ?lon1.\n" + 
 				"	}\n" + 
-				"	WINDOW :user {\n" + 
+				"	WINDOW :traffic {\n" + 
 				"		?obId2 a ssn:Observation;\n" + 
 				"			ssn:observedProperty ?p2;\n" + 
 				"			sao:hasValue ?v2;\n" + 
-				"			ssn:observedBy ns:UserLocationService.\n" + 
-				"		?v2 ct:hasLatitude ?lat2;\n" + 
-				"			ct:hasLongitude ?lon2.\n" + 
+				"			ssn:observedBy ns:AarhusTrafficData158505.\n" + 
 				"	}\n" + 
 				"	FILTER (((?lat2-?lat1)*(?lat2-?lat1)+(?lon2-?lon1)*(?lon2-?lon1))<0.1)\n" + 
 				"}";
@@ -267,7 +269,7 @@ public class test {
 //		mapping.loadMapping("/Users/eugene/Downloads/knoesis_observations_map_meta/4UT01.nt");
 //		mapping.loadMapping("/Users/eugene/Downloads/knoesis_observations_ike_map_meta/HP001.nt");
 //		mapping.loadMapping("/Users/eugene/Downloads/knoesis_observations_ike_map_snow/ALPHA.nt");
-		mapping.loadMapping("mapping/smarthome_environment.nt");
+		mapping.loadMapping("mapping/SensorRepository.nt");
 //		mapping.loadMapping("mapping/smarthome_sensors.nt");
 //		mapping.loadMapping("mapping/smarthome_meter.nt");
 //		mapping.loadMapping("mapping/smarthome_motion.nt");
