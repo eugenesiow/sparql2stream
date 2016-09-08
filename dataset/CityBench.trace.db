@@ -91,3 +91,99 @@ SELECT AarhusCulturalEvents.title AS title , AarhusCulturalEvents.lat AS lat1 , 
 	at com.espertech.esper.core.service.EPAdministratorImpl.createEPL(EPAdministratorImpl.java:67)
 	at uk.ac.soton.ldanalytics.sparql2stream.cep.CepEngineCityBench.testQ4(CepEngineCityBench.java:144)
 	at uk.ac.soton.ldanalytics.sparql2stream.cep.CepEngineCityBench.main(CepEngineCityBench.java:33)
+09-08 16:38:23 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SENSORREPOSITORY" already exists; SQL statement:
+CREATE TABLE SensorRepository
+(
+  propId VARCHAR,
+  type VARCHAR,
+  lat DOUBLE,
+  lon DOUBLE
+)
+; [42101-187]
+09-08 17:07:53 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "AARHUSCULTURALEVENTS.LAT1" not found; SQL statement:
+SELECT AarhusCulturalEvents.lat1 AS lat1 , AarhusCulturalEvents.lon1 AS lon1 , AarhusCulturalEvents.title AS title FROM AarhusCulturalEvents WHERE (((?-AarhusCulturalEvents.lat)*(?-AarhusCulturalEvents.lat))+((?-AarhusCulturalEvents.lon)*(?-AarhusCulturalEvents.lon)))<0.1  [42122-187]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:147)
+	at org.h2.expression.Alias.optimize(Alias.java:51)
+	at org.h2.command.dml.Select.prepare(Select.java:877)
+	at org.h2.command.Parser.prepareCommand(Parser.java:247)
+	at org.h2.engine.Session.prepareLocal(Session.java:461)
+	at org.h2.engine.Session.prepareCommand(Session.java:403)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1189)
+	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:72)
+	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:277)
+	at com.espertech.esper.epl.db.DatabasePollingViewableFactory.getPreparedStmtMetadata(DatabasePollingViewableFactory.java:528)
+	at com.espertech.esper.epl.db.DatabasePollingViewableFactory.createDBStatementView(DatabasePollingViewableFactory.java:138)
+	at com.espertech.esper.core.start.EPStatementStartMethodSelectUtil.prepare(EPStatementStartMethodSelectUtil.java:188)
+	at com.espertech.esper.core.start.EPStatementStartMethodSelect.startInternal(EPStatementStartMethodSelect.java:61)
+	at com.espertech.esper.core.start.EPStatementStartMethodBase.start(EPStatementStartMethodBase.java:57)
+	at com.espertech.esper.core.service.StatementLifecycleSvcImpl.startInternal(StatementLifecycleSvcImpl.java:704)
+	at com.espertech.esper.core.service.StatementLifecycleSvcImpl.start(StatementLifecycleSvcImpl.java:666)
+	at com.espertech.esper.core.service.StatementLifecycleSvcImpl.createAndStart(StatementLifecycleSvcImpl.java:154)
+	at com.espertech.esper.core.service.EPAdministratorImpl.createEPLStmt(EPAdministratorImpl.java:118)
+	at com.espertech.esper.core.service.EPAdministratorImpl.createEPL(EPAdministratorImpl.java:67)
+	at uk.ac.soton.ldanalytics.sparql2stream.cep.CepEngineCityBench.testQ5(CepEngineCityBench.java:175)
+	at uk.ac.soton.ldanalytics.sparql2stream.cep.CepEngineCityBench.main(CepEngineCityBench.java:31)
+09-08 17:08:43 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT SENSORREPOSITORY.LAT AS LAT2 , SENSORREPOSITORY.LON AS LON2 FROM SENSORREPOSITORY WHERE SENSORREPOSITORY.PROPID=PROPERTY-B9F96475-BD7F-4868-8A3B[*]-4D01FF8F9359 AND SENSORREPOSITORY.TYPE=CONGESTIONLEVEL  "; SQL statement:
+SELECT SensorRepository.lat AS lat2 , SensorRepository.lon AS lon2 FROM SensorRepository WHERE SensorRepository.propId=Property-b9f96475-bd7f-4868-8a3b-4d01ff8f9359 AND SensorRepository.type=CongestionLevel  [42000-187]
+09-08 17:09:41 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "Property-b9f96475-bd7f-4868-8a3b-4d01ff8f9359" not found; SQL statement:
+SELECT SensorRepository.lat AS lat2 , SensorRepository.lon AS lon2 FROM SensorRepository WHERE SensorRepository.propId="Property-b9f96475-bd7f-4868-8a3b-4d01ff8f9359" AND SensorRepository.type=CongestionLevel  [42122-187]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:147)
+	at org.h2.expression.Comparison.optimize(Comparison.java:180)
+	at org.h2.expression.ConditionAndOr.optimize(ConditionAndOr.java:130)
+	at org.h2.command.dml.Select.prepare(Select.java:880)
+	at org.h2.command.Parser.prepareCommand(Parser.java:247)
+	at org.h2.engine.Session.prepareLocal(Session.java:461)
+	at org.h2.engine.Session.prepareCommand(Session.java:403)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1189)
+	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:72)
+	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:277)
+	at com.espertech.esper.epl.db.DatabasePollingViewableFactory.getPreparedStmtMetadata(DatabasePollingViewableFactory.java:528)
+	at com.espertech.esper.epl.db.DatabasePollingViewableFactory.createDBStatementView(DatabasePollingViewableFactory.java:138)
+	at com.espertech.esper.core.start.EPStatementStartMethodSelectUtil.prepare(EPStatementStartMethodSelectUtil.java:188)
+	at com.espertech.esper.core.start.EPStatementStartMethodSelect.startInternal(EPStatementStartMethodSelect.java:61)
+	at com.espertech.esper.core.start.EPStatementStartMethodBase.start(EPStatementStartMethodBase.java:57)
+	at com.espertech.esper.core.service.StatementLifecycleSvcImpl.startInternal(StatementLifecycleSvcImpl.java:704)
+	at com.espertech.esper.core.service.StatementLifecycleSvcImpl.start(StatementLifecycleSvcImpl.java:666)
+	at com.espertech.esper.core.service.StatementLifecycleSvcImpl.createAndStart(StatementLifecycleSvcImpl.java:154)
+	at com.espertech.esper.core.service.EPAdministratorImpl.createEPLStmt(EPAdministratorImpl.java:118)
+	at com.espertech.esper.core.service.EPAdministratorImpl.createEPL(EPAdministratorImpl.java:67)
+	at uk.ac.soton.ldanalytics.sparql2stream.cep.CepEngineCityBench.testQ5(CepEngineCityBench.java:175)
+	at uk.ac.soton.ldanalytics.sparql2stream.cep.CepEngineCityBench.main(CepEngineCityBench.java:31)
+09-08 17:12:05 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "CONGESTIONLEVEL" not found; SQL statement:
+SELECT SensorRepository.lat AS lat2 , SensorRepository.lon AS lon2 FROM SensorRepository WHERE SensorRepository.propId='Property-b9f96475-bd7f-4868-8a3b-4d01ff8f9359' AND SensorRepository.type=CongestionLevel  [42122-187]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:147)
+	at org.h2.expression.Comparison.optimize(Comparison.java:180)
+	at org.h2.expression.ConditionAndOr.optimize(ConditionAndOr.java:131)
+	at org.h2.command.dml.Select.prepare(Select.java:880)
+	at org.h2.command.Parser.prepareCommand(Parser.java:247)
+	at org.h2.engine.Session.prepareLocal(Session.java:461)
+	at org.h2.engine.Session.prepareCommand(Session.java:403)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1189)
+	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:72)
+	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:277)
+	at com.espertech.esper.epl.db.DatabasePollingViewableFactory.getPreparedStmtMetadata(DatabasePollingViewableFactory.java:528)
+	at com.espertech.esper.epl.db.DatabasePollingViewableFactory.createDBStatementView(DatabasePollingViewableFactory.java:138)
+	at com.espertech.esper.core.start.EPStatementStartMethodSelectUtil.prepare(EPStatementStartMethodSelectUtil.java:188)
+	at com.espertech.esper.core.start.EPStatementStartMethodSelect.startInternal(EPStatementStartMethodSelect.java:61)
+	at com.espertech.esper.core.start.EPStatementStartMethodBase.start(EPStatementStartMethodBase.java:57)
+	at com.espertech.esper.core.service.StatementLifecycleSvcImpl.startInternal(StatementLifecycleSvcImpl.java:704)
+	at com.espertech.esper.core.service.StatementLifecycleSvcImpl.start(StatementLifecycleSvcImpl.java:666)
+	at com.espertech.esper.core.service.StatementLifecycleSvcImpl.createAndStart(StatementLifecycleSvcImpl.java:154)
+	at com.espertech.esper.core.service.EPAdministratorImpl.createEPLStmt(EPAdministratorImpl.java:118)
+	at com.espertech.esper.core.service.EPAdministratorImpl.createEPL(EPAdministratorImpl.java:67)
+	at uk.ac.soton.ldanalytics.sparql2stream.cep.CepEngineCityBench.testQ5(CepEngineCityBench.java:175)
+	at uk.ac.soton.ldanalytics.sparql2stream.cep.CepEngineCityBench.main(CepEngineCityBench.java:31)

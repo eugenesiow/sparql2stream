@@ -1,0 +1,11 @@
+    SELECT
+        AarhusCulturalEvents.LAT1 AS lat1,
+        AarhusCulturalEvents.LON1 AS lon1,
+        AarhusCulturalEvents.TITLE AS title,
+        SensorRepository.LAT2 AS lat2 ,
+        SensorRepository.LON2 AS lon2 ,
+        AarhusTrafficData158505.congestionLevel AS v2 
+    FROM
+        sql:AarhusCulturalEvents [ 'SELECT AarhusCulturalEvents.lat AS lat1 , AarhusCulturalEvents.lon AS lon1 , AarhusCulturalEvents.title AS title FROM AarhusCulturalEvents WHERE (((${SensorRepository.LAT2}-AarhusCulturalEvents.lat)*(${SensorRepository.LAT2}-AarhusCulturalEvents.lat))+((${SensorRepository.LON2}-AarhusCulturalEvents.lon)*(${SensorRepository.LON2}-AarhusCulturalEvents.lon)))<0.1 ' ] AS AarhusCulturalEvents ,
+        AarhusTrafficData158505.win:time(3 sec) ,
+        sql:SensorRepository [ 'SELECT SensorRepository.lat AS lat2 , SensorRepository.lon AS lon2 FROM SensorRepository WHERE SensorRepository.propId=\'Property-b9f96475-bd7f-4868-8a3b-4d01ff8f9359\' ' ] AS SensorRepository   

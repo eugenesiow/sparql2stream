@@ -53,6 +53,7 @@ public class CulturalEventsDb {
 	}
 
 	private static void createTable(Connection conn) throws SQLException {
+		conn.createStatement().executeUpdate("DROP TABLE "+tableName);
 		Statement stat = conn.createStatement();
 		stat.execute("CREATE TABLE "+tableName+"\n" + 
 			"(\n" + 

@@ -3,14 +3,17 @@ PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#>
 PREFIX ct: 	<http://www.insight-centre.org/citytraffic#>
 PREFIX ns: 	<http://www.insight-centre.org/dataset/SampleEventService#>
 
-SELECT ?title ?lat1 ?lon1 ?lat2 ?lon2
+SELECT ?title ?lat1 ?lon1 ?lat2 ?lon2 ?v2
 FROM NAMED WINDOW :traffic ON <http://www.insight-centre.org/dataset/SampleEventService#AarhusTrafficData158505> [RANGE 3s]
 FROM NAMED <http://www.insight-centre.org/dataset/SampleEventService#AarhusCulturalEvents>
+FROM NAMED <http://www.insight-centre.org/dataset/SampleEventService#SensorRepository>
 WHERE {
-	?p2 a ct:CongestionLevel;
-		ssn:isPropertyOf ?foi2.
-	?foi2 ct:hasStartLatitude ?lat2;
-		ct:hasStartLongitude ?lon2.
+	GRAPH ns:SensorRepository {
+		?p2 a ct:CongestionLevel;
+			ssn:isPropertyOf ?foi2.
+		?foi2 ct:hasStartLatitude ?lat2;
+			ct:hasStartLongitude ?lon2.
+	}
 	GRAPH ns:AarhusCulturalEvents {
 		?evtId a ssn:Observation;
 			sao:value ?title;

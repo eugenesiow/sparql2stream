@@ -28,7 +28,7 @@ import com.espertech.esper.client.EPStatement;
 
 public class CepEngineCityBench {
 	public static void main(String[] args) {
-		testQ4();
+		testQ5();
 	}
 	
 	public static void testQ1() {
@@ -148,6 +148,39 @@ public class CepEngineCityBench {
         
         //shutdown
         UserLocationService.shutdown();
+        epService.destroy();
+	}
+	
+	public static void testQ5() {
+		ConfigurationDBRef dbConfig = new ConfigurationDBRef();
+		dbConfig.setDriverManagerConnection("org.h2.Driver",
+		                                    "jdbc:h2:./dataset/CityBench", 
+		                                    "sa", 
+		                                    "");
+
+		Configuration engineConfig = new Configuration();
+		engineConfig.addDatabaseReference("AarhusCulturalEvents", dbConfig);
+		engineConfig.addDatabaseReference("SensorRepository", dbConfig);
+		
+		EPServiceProvider epService = EPServiceProviderManager.getProvider("engine_test",engineConfig);
+		TrafficStream AarhusTrafficData158505 = new TrafficStream(epService,"AarhusTrafficData158505","158505","dataset/trafficMetaData.csv");
+		AarhusTrafficData158505.setupSourceFile("streams/AarhusTrafficData158505.stream");
+//		String stmt = getStatement("q4");
+		String stmt = null;
+		try {
+			stmt = FileUtils.readFileToString(new File("Queries/CityBench/q5.epl"));
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+        EPStatement statement = epService.getEPAdministrator().createEPL(stmt);
+        statement.addListener(new SimpleQueryListener());
+        
+        for(int i=0;i<100;i++) {
+        	AarhusTrafficData158505.sendEvent();
+        }
+        
+        //shutdown
+        AarhusTrafficData158505.shutdown();
         epService.destroy();
 	}
 }
