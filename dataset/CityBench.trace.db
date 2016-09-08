@@ -1,0 +1,93 @@
+09-08 14:19:49 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "AARHUSCULTURALEVENTS.TITLE" not found; SQL statement:
+SELECT AarhusCulturalEvents.title AS title , AarhusCulturalEvents.lat AS lat1 , AarhusCulturalEvents.lon AS lon1 [42122-187]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:147)
+	at org.h2.expression.Alias.optimize(Alias.java:51)
+	at org.h2.command.dml.Select.prepare(Select.java:877)
+	at org.h2.command.Parser.prepareCommand(Parser.java:247)
+	at org.h2.engine.Session.prepareLocal(Session.java:461)
+	at org.h2.engine.Session.prepareCommand(Session.java:403)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1189)
+	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:72)
+	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:277)
+	at com.espertech.esper.epl.db.DatabasePollingViewableFactory.getPreparedStmtMetadata(DatabasePollingViewableFactory.java:528)
+	at com.espertech.esper.epl.db.DatabasePollingViewableFactory.createDBStatementView(DatabasePollingViewableFactory.java:138)
+	at com.espertech.esper.core.start.EPStatementStartMethodSelectUtil.prepare(EPStatementStartMethodSelectUtil.java:188)
+	at com.espertech.esper.core.start.EPStatementStartMethodSelect.startInternal(EPStatementStartMethodSelect.java:61)
+	at com.espertech.esper.core.start.EPStatementStartMethodBase.start(EPStatementStartMethodBase.java:57)
+	at com.espertech.esper.core.service.StatementLifecycleSvcImpl.startInternal(StatementLifecycleSvcImpl.java:704)
+	at com.espertech.esper.core.service.StatementLifecycleSvcImpl.start(StatementLifecycleSvcImpl.java:666)
+	at com.espertech.esper.core.service.StatementLifecycleSvcImpl.createAndStart(StatementLifecycleSvcImpl.java:154)
+	at com.espertech.esper.core.service.EPAdministratorImpl.createEPLStmt(EPAdministratorImpl.java:118)
+	at com.espertech.esper.core.service.EPAdministratorImpl.createEPL(EPAdministratorImpl.java:67)
+	at uk.ac.soton.ldanalytics.sparql2stream.cep.CepEngineCityBench.testQ4(CepEngineCityBench.java:120)
+	at uk.ac.soton.ldanalytics.sparql2stream.cep.CepEngineCityBench.main(CepEngineCityBench.java:20)
+09-08 14:21:29 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "AARHUSCULTURALEVENTS.TITLE" not found; SQL statement:
+SELECT AarhusCulturalEvents.title AS title , AarhusCulturalEvents.lat AS lat1 , AarhusCulturalEvents.lon AS lon1 [42122-187]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:147)
+	at org.h2.expression.Alias.optimize(Alias.java:51)
+	at org.h2.command.dml.Select.prepare(Select.java:877)
+	at org.h2.command.Parser.prepareCommand(Parser.java:247)
+	at org.h2.engine.Session.prepareLocal(Session.java:461)
+	at org.h2.engine.Session.prepareCommand(Session.java:403)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1189)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:170)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:158)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1390)
+	at org.h2.server.web.WebApp.query(WebApp.java:1063)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1025)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1012)
+	at org.h2.server.web.WebThread.process(WebThread.java:168)
+	at org.h2.server.web.WebThread.run(WebThread.java:93)
+	at java.lang.Thread.run(Thread.java:745)
+09-08 14:50:58 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "USERLOCATIONSERVICE.LAT" not found; SQL statement:
+SELECT AarhusCulturalEvents.title AS title , AarhusCulturalEvents.lat AS lat1 , AarhusCulturalEvents.lon AS lon1 FROM AarhusCulturalEvents WHERE (
+            (
+                (
+                    UserLocationService.lat-AarhusCulturalEvents.lat
+                )*(
+                    UserLocationService.lat-AarhusCulturalEvents.lat
+                )
+            )+(
+                (
+                    UserLocationService.lon-AarhusCulturalEvents.lon
+                )*(
+                    UserLocationService.lon-AarhusCulturalEvents.lon
+                )
+            )
+        )<0.1  [42122-187]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:147)
+	at org.h2.expression.Operation.optimize(Operation.java:181)
+	at org.h2.expression.Operation.optimize(Operation.java:181)
+	at org.h2.expression.Operation.optimize(Operation.java:181)
+	at org.h2.expression.Comparison.optimize(Comparison.java:178)
+	at org.h2.command.dml.Select.prepare(Select.java:880)
+	at org.h2.command.Parser.prepareCommand(Parser.java:247)
+	at org.h2.engine.Session.prepareLocal(Session.java:461)
+	at org.h2.engine.Session.prepareCommand(Session.java:403)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1189)
+	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:72)
+	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:277)
+	at com.espertech.esper.epl.db.DatabasePollingViewableFactory.getPreparedStmtMetadata(DatabasePollingViewableFactory.java:528)
+	at com.espertech.esper.epl.db.DatabasePollingViewableFactory.createDBStatementView(DatabasePollingViewableFactory.java:138)
+	at com.espertech.esper.core.start.EPStatementStartMethodSelectUtil.prepare(EPStatementStartMethodSelectUtil.java:188)
+	at com.espertech.esper.core.start.EPStatementStartMethodSelect.startInternal(EPStatementStartMethodSelect.java:61)
+	at com.espertech.esper.core.start.EPStatementStartMethodBase.start(EPStatementStartMethodBase.java:57)
+	at com.espertech.esper.core.service.StatementLifecycleSvcImpl.startInternal(StatementLifecycleSvcImpl.java:704)
+	at com.espertech.esper.core.service.StatementLifecycleSvcImpl.start(StatementLifecycleSvcImpl.java:666)
+	at com.espertech.esper.core.service.StatementLifecycleSvcImpl.createAndStart(StatementLifecycleSvcImpl.java:154)
+	at com.espertech.esper.core.service.EPAdministratorImpl.createEPLStmt(EPAdministratorImpl.java:118)
+	at com.espertech.esper.core.service.EPAdministratorImpl.createEPL(EPAdministratorImpl.java:67)
+	at uk.ac.soton.ldanalytics.sparql2stream.cep.CepEngineCityBench.testQ4(CepEngineCityBench.java:144)
+	at uk.ac.soton.ldanalytics.sparql2stream.cep.CepEngineCityBench.main(CepEngineCityBench.java:33)
