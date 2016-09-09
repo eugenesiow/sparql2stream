@@ -6,5 +6,5 @@
         UserLocationService.lon AS lon2     
     FROM
         UserLocationService.win:time(3 sec) ,
-        sql:AarhusCulturalEvents [ 'SELECT AarhusCulturalEvents.title AS title , AarhusCulturalEvents.lat AS lat1 , AarhusCulturalEvents.lon AS lon1 FROM AarhusCulturalEvents WHERE (((${lat}-AarhusCulturalEvents.lat)*(${lat}-AarhusCulturalEvents.lat))+((${lon}-AarhusCulturalEvents.lon)*(${lon}-AarhusCulturalEvents.lon)))<0.1 ' ] AS AarhusCulturalEvents    
+        sql:AarhusCulturalEvents [ 'SELECT AarhusCulturalEvents.title AS title , AarhusCulturalEvents.lat AS lat1 , AarhusCulturalEvents.lon AS lon1 FROM AarhusCulturalEvents WHERE (((${lat}-AarhusCulturalEvents.lat)*(${lat}-AarhusCulturalEvents.lat))+((${lon}-AarhusCulturalEvents.lon)*(${lon}-AarhusCulturalEvents.lon)))<0.1' ] AS AarhusCulturalEvents    
 	
