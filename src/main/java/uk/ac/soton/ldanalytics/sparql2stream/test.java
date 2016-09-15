@@ -215,7 +215,7 @@ public class test {
 				"PREFIX ct: 	<http://www.insight-centre.org/citytraffic#>\n" + 
 				"PREFIX ns: 	<http://www.insight-centre.org/dataset/SampleEventService#>\n" + 
 				"\n" + 
-				"SELECT ?title ?lat1 ?lon1 ?lat2 ?lon2\n" + 
+				"SELECT ?title ?lat1 ?lon1 ?lat2 ?lon2 ?v2\n" + 
 				"FROM NAMED WINDOW :traffic ON <http://www.insight-centre.org/dataset/SampleEventService#AarhusTrafficData158505> [RANGE 3s]\n" + 
 				"FROM NAMED <http://www.insight-centre.org/dataset/SampleEventService#AarhusCulturalEvents>\n" + 
 				"FROM NAMED <http://www.insight-centre.org/dataset/SampleEventService#SensorRepository>\n" + 

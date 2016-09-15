@@ -2,3 +2,4 @@
 sparql2sql-server/
 
 *.log
+/target/
