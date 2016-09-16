@@ -78,7 +78,7 @@ public class CepEngineCityBench {
 		try {
 			String queryStr = FileUtils.readFileToString(new File("Queries/CityBench/"+queryName+".sparql"));
 			RdfTableMapping mapping = new RdfTableMappingJena();
-			mapping.loadMapping("mapping/SensorRepository.nt");
+//			mapping.loadMapping("mapping/SensorRepository.nt");
 			Map<String,String> streamCatalog = StreamFormatUtil.loadStreamCatalog("streams/catalogue.txt");
 			Map<String,String> mappingCatalog = StreamFormatUtil.loadMappingCatalog("streams/mapping_catalogue.txt");
 			Query query = StreamQueryFactory.create(queryStr);
@@ -165,13 +165,7 @@ public class CepEngineCityBench {
 		EPServiceProvider epService = EPServiceProviderManager.getProvider("engine_test",engineConfig);
 		TrafficStream AarhusTrafficData158505 = new TrafficStream(epService,"AarhusTrafficData158505","158505","dataset/trafficMetaData.csv");
 		AarhusTrafficData158505.setupSourceFile("streams/AarhusTrafficData158505.stream");
-//		String stmt = getStatement("q4");
-		String stmt = null;
-		try {
-			stmt = FileUtils.readFileToString(new File("Queries/CityBench/q5.epl"));
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
+		String stmt = getStatement("q5");
         EPStatement statement = epService.getEPAdministrator().createEPL(stmt);
         statement.addListener(new SimpleQueryListener());
         

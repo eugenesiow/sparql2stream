@@ -29,7 +29,7 @@ import uk.ac.soton.ldanalytics.sparql2stream.util.StreamFormatUtil;
  */
 public class CityBenchTest {
 
-	String[] testSet = {"q1","q2","q3","q4"};
+	String[] testSet = {"q1","q2","q3","q4","q5"};
 	
 	@Test
 	public void testQueryGeneration() {
@@ -38,7 +38,7 @@ public class CityBenchTest {
 		String resultsPath = "Queries/CityBench/";
 		
 		RdfTableMapping mapping = new RdfTableMappingJena();
-		mapping.loadMapping("mapping/SensorRepository.nt");
+//		mapping.loadMapping("mapping/SensorRepository.nt");
 		Map<String,String> streamCatalog = StreamFormatUtil.loadStreamCatalog("streams/catalogue.txt");
 		Map<String,String> mappingCatalog = StreamFormatUtil.loadMappingCatalog("streams/mapping_catalogue.txt");
 		
