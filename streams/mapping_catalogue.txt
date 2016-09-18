@@ -1,11 +1,16 @@
-http://www.cwi.nl/SRBench/observations,/Users/eugene/Downloads/knoesis_observations_ike_map_snow/ALPHA.nt
 http://iot.soton.ac.uk/smarthome/motion,mapping/smarthome_motion.nt
 http://iot.soton.ac.uk/smarthome/meter,mapping/smarthome_meter.nt
 http://iot.soton.ac.uk/smarthome/environment,mapping/smarthome_environment.nt
 http://iot.soton.ac.uk/smarthome/sensors,mapping/smarthome_sensors.nt
 http://www.insight-centre.org/dataset/SampleEventService#AarhusTrafficData182955,mapping/AarhusTrafficData182955.nt
 http://www.insight-centre.org/dataset/SampleEventService#AarhusTrafficData158505,mapping/AarhusTrafficData158505.nt
+http://www.insight-centre.org/dataset/SampleEventService#AarhusTrafficData186979,mapping/AarhusTrafficData186979.nt
 http://www.insight-centre.org/dataset/SampleEventService#AarhusWeatherData0,mapping/AarhusWeatherData0.nt
 http://www.insight-centre.org/dataset/SampleEventService#AarhusCulturalEvents,mapping/AarhusCulturalEvents.nt
+http://www.insight-centre.org/dataset/SampleEventService#AarhusLibraryEvents,mapping/AarhusLibraryEvents.nt
 http://www.insight-centre.org/dataset/SampleEventService#UserLocationService,mapping/UserLocationService.nt
 http://www.insight-centre.org/dataset/SampleEventService#SensorRepository,mapping/SensorRepository.nt
+http://www.insight-centre.org/dataset/SampleEventService#AarhusParkingDataKALKVAERKSVEJ,mapping/AarhusParkingDataKALKVAERKSVEJ.nt
+http://www.insight-centre.org/dataset/SampleEventService#AarhusParkingDataSKOLEBAKKEN,mapping/AarhusParkingDataSKOLEBAKKEN.nt
+http://www.insight-centre.org/dataset/SampleEventService#AarhusPollutionData201399,mapping/AarhusPollutionData201399.nt
+http://www.insight-centre.org/dataset/SampleEventService#AarhusPollutionData197626,mapping/AarhusPollutionData197626.nt

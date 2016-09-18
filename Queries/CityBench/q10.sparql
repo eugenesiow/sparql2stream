@@ -1,0 +1,34 @@
+PREFIX sao: <http://purl.oclc.org/NET/sao/>
+PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#>
+PREFIX ct: 	<http://www.insight-centre.org/citytraffic#>
+PREFIX ns: 	<http://www.insight-centre.org/dataset/SampleEventService#>
+
+SELECT ?lat1 ?lon1 ?lat2 ?lon2 ?v1 ?v2
+FROM NAMED WINDOW :pollution1 ON <http://www.insight-centre.org/dataset/SampleEventService#AarhusPollutionData201399> [RANGE 3s]
+FROM NAMED WINDOW :pollution2 ON <http://www.insight-centre.org/dataset/SampleEventService#AarhusPollutionData197626> [RANGE 3s]
+FROM NAMED <http://www.insight-centre.org/dataset/SampleEventService#SensorRepository>
+WHERE {
+	GRAPH ns:SensorRepository {
+		?p1 ssn:isPropertyOf ?foi1.
+		?foi1 ct:hasStartLatitude ?lat1;
+			ct:hasStartLongitude ?lon1.
+	}
+	GRAPH ns:SensorRepository {
+		?p2 ssn:isPropertyOf ?foi2.
+		?foi2 ct:hasStartLatitude ?lat2;
+			ct:hasStartLongitude ?lon2.
+	}
+	WINDOW :pollution1 {
+		?obId1 a ssn:Observation;
+			ssn:observedProperty ?p1;
+			sao:hasValue ?v1;
+			ssn:observedBy ns:AarhusPollutionData201399.
+	}
+	WINDOW :pollution2 {
+		?obId2 a ssn:Observation;
+			ssn:observedProperty ?p2;
+			sao:hasValue ?v2;
+			ssn:observedBy ns:AarhusPollutionData197626.
+	}
+	# BIND (?v1+?v2) as ?sumOfAPI
+}

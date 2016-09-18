@@ -1,0 +1,21 @@
+### ?obId1 should be projected, however we cannot project it in this query as it demands ?obId1 to be grouped, which makes the semantics wrong.
+### as a result the latency cannot be evaluated.
+PREFIX sao: <http://purl.oclc.org/NET/sao/>
+PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#>
+PREFIX ct: 	<http://www.insight-centre.org/citytraffic#>
+PREFIX ns: 	<http://www.insight-centre.org/dataset/SampleEventService#>
+
+SELECT (count(?v1) as ?obCnt) 
+FROM NAMED WINDOW :traffic ON <http://www.insight-centre.org/dataset/SampleEventService#AarhusTrafficData186979> [RANGE 3s]
+WHERE {
+	WINDOW :traffic {
+		?obId1 a ssn:Observation;
+			ssn:observedProperty ?p1;
+			sao:hasValue ?v1;
+			ssn:observedBy ns:AarhusTrafficData186979.
+		?p1 a ct:CongestionLevel.
+	}
+	FILTER(?v1>= -1)
+}
+### GROUP BY ?obId1 
+HAVING (count(?v1) >3)

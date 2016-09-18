@@ -1,0 +1,34 @@
+PREFIX sao: <http://purl.oclc.org/NET/sao/>
+PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#>
+PREFIX ct: 	<http://www.insight-centre.org/citytraffic#>
+PREFIX ns: 	<http://www.insight-centre.org/dataset/SampleEventService#>
+
+SELECT ?v1 ?v2
+FROM NAMED WINDOW :parking1 ON <http://www.insight-centre.org/dataset/SampleEventService#AarhusParkingDataKALKVAERKSVEJ> [RANGE 3s]
+FROM NAMED WINDOW :parking2 ON <http://www.insight-centre.org/dataset/SampleEventService#AarhusParkingDataSKOLEBAKKEN> [RANGE 3s]
+FROM NAMED <http://www.insight-centre.org/dataset/SampleEventService#AarhusLibraryEvents>
+WHERE {
+	GRAPH ns:AarhusLibraryEvents {
+		?evtId a ssn:Observation;
+			sao:value ?title;
+			ssn:featureOfInterest ?foi.
+		?foi ct:hasFirstNode ?node.
+		?node ct:hasLatitude ?lat1;
+			ct:hasLongitude ?lon1.
+	}
+	WINDOW :parking1 {
+		?obId1 a ssn:Observation;
+			ssn:observedProperty ?p1;
+			sao:hasValue ?v1;
+			ssn:observedBy ns:AarhusParkingDataKALKVAERKSVEJ.
+		?p1 a ct:ParkingVacancy.
+	}
+	WINDOW :parking2 {
+		?obId2 a ssn:Observation;
+			ssn:observedProperty ?p2;
+			sao:hasValue ?v2;
+			ssn:observedBy ns:AarhusParkingDataSKOLEBAKKEN.
+		?p2 a ct:ParkingVacancy.
+	}
+	FILTER(?v1>0||?v2>0)
+}

@@ -1,0 +1,30 @@
+PREFIX sao: <http://purl.oclc.org/NET/sao/>
+PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#>
+PREFIX ct: 	<http://www.insight-centre.org/citytraffic#>
+PREFIX ns: 	<http://www.insight-centre.org/dataset/SampleEventService#>
+
+SELECT ?lat1 ?lon1 ?lat2 ?lon2
+FROM NAMED WINDOW :parking ON <http://www.insight-centre.org/dataset/SampleEventService#AarhusParkingDataKALKVAERKSVEJ> [RANGE 20s]
+FROM NAMED WINDOW :user ON <http://www.insight-centre.org/dataset/SampleEventService#UserLocationService> [RANGE 3s]
+FROM NAMED <http://www.insight-centre.org/dataset/SampleEventService#SensorRepository>
+WHERE {
+	GRAPH ns:SensorRepository {
+		?p1 a ct:ParkingVacancy;
+			ssn:isPropertyOf ?foi1.
+		?foi1 ct:hasStartLatitude ?lat1;
+			ct:hasStartLongitude ?lon1.
+	}
+	WINDOW :parking {
+		?obId1 a ssn:Observation;
+			ssn:observedProperty ?p1;
+			sao:hasValue ?v1;
+			ssn:observedBy ns:AarhusParkingDataKALKVAERKSVEJ.
+	}
+	WINDOW :user {
+		?obId2 a ssn:Observation;
+			sao:hasValue ?v2;
+			ssn:observedBy ns:UserLocationService.
+		?v2 ct:hasLatitude ?lat2;
+			ct:hasLongitude ?lon2.
+	}
+}

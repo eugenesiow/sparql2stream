@@ -1,10 +1,15 @@
-_ALPHA,http://www.cwi.nl/SRBench/observations
 motion,http://iot.soton.ac.uk/smarthome/motion
 meter,http://iot.soton.ac.uk/smarthome/meter
 environment,http://iot.soton.ac.uk/smarthome/environment
 AarhusTrafficData182955,http://www.insight-centre.org/dataset/SampleEventService#AarhusTrafficData182955
 AarhusTrafficData158505,http://www.insight-centre.org/dataset/SampleEventService#AarhusTrafficData158505
+AarhusTrafficData186979,http://www.insight-centre.org/dataset/SampleEventService#AarhusTrafficData186979
 AarhusWeatherData0,http://www.insight-centre.org/dataset/SampleEventService#AarhusWeatherData0
 AarhusCulturalEvents,http://www.insight-centre.org/dataset/SampleEventService#AarhusCulturalEvents
+AarhusLibraryEvents,http://www.insight-centre.org/dataset/SampleEventService#AarhusLibraryEvents
 UserLocationService,http://www.insight-centre.org/dataset/SampleEventService#UserLocationService
 SensorRepository,http://www.insight-centre.org/dataset/SampleEventService#SensorRepository
+AarhusParkingDataKALKVAERKSVEJ,http://www.insight-centre.org/dataset/SampleEventService#AarhusParkingDataKALKVAERKSVEJ
+AarhusParkingDataSKOLEBAKKEN,http://www.insight-centre.org/dataset/SampleEventService#AarhusParkingDataSKOLEBAKKEN
+AarhusPollutionData201399,http://www.insight-centre.org/dataset/SampleEventService#AarhusPollutionData201399
+AarhusPollutionData197626,http://www.insight-centre.org/dataset/SampleEventService#AarhusPollutionData197626

@@ -210,38 +210,27 @@ public class test {
 //				"		?p2 a ct:CongestionLevel.\n" + 
 //				"	}\n" + 
 //				"}";
-		String queryStr = "PREFIX sao: <http://purl.oclc.org/NET/sao/>\n" + 
+		String queryStr = "### ?obId1 should be projected, however we cannot project it in this query as it demands ?obId1 to be grouped, which makes the semantics wrong.\n" + 
+				"### as a result the latency cannot be evaluated.\n" + 
+				"PREFIX sao: <http://purl.oclc.org/NET/sao/>\n" + 
 				"PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#>\n" + 
 				"PREFIX ct: 	<http://www.insight-centre.org/citytraffic#>\n" + 
 				"PREFIX ns: 	<http://www.insight-centre.org/dataset/SampleEventService#>\n" + 
 				"\n" + 
-				"SELECT ?title ?lat1 ?lon1 ?lat2 ?lon2 ?v2\n" + 
-				"FROM NAMED WINDOW :traffic ON <http://www.insight-centre.org/dataset/SampleEventService#AarhusTrafficData158505> [RANGE 3s]\n" + 
-				"FROM NAMED <http://www.insight-centre.org/dataset/SampleEventService#AarhusCulturalEvents>\n" + 
-				"FROM NAMED <http://www.insight-centre.org/dataset/SampleEventService#SensorRepository>\n" + 
+				"SELECT (count(?v1) as ?obCnt) \n" + 
+				"FROM NAMED WINDOW :traffic ON <http://www.insight-centre.org/dataset/SampleEventService#AarhusTrafficData186979> [RANGE 3s]\n" + 
 				"WHERE {\n" + 
-				"	GRAPH ns:SensorRepository {\n" + 
-				"		?p2 a ct:CongestionLevel;\n" + 
-				"			ssn:isPropertyOf ?foi2.\n" + 
-				"		?foi2 ct:hasStartLatitude ?lat2;\n" + 
-				"			ct:hasStartLongitude ?lon2.\n" + 
-				"	}\n" + 
-				"	GRAPH ns:AarhusCulturalEvents {\n" + 
-				"		?evtId a ssn:Observation;\n" + 
-				"			sao:value ?title;\n" + 
-				"			ssn:featureOfInterest ?foi.\n" + 
-				"		?foi ct:hasFirstNode ?node.\n" + 
-				"		?node ct:hasLatitude ?lat1;\n" + 
-				"			ct:hasLongitude ?lon1.\n" + 
-				"	}\n" + 
 				"	WINDOW :traffic {\n" + 
-				"		?obId2 a ssn:Observation;\n" + 
-				"			ssn:observedProperty ?p2;\n" + 
-				"			sao:hasValue ?v2;\n" + 
-				"			ssn:observedBy ns:AarhusTrafficData158505.\n" + 
+				"		?obId1 a ssn:Observation;\n" + 
+				"			ssn:observedProperty ?p1;\n" + 
+				"			sao:hasValue ?v1;\n" + 
+				"			ssn:observedBy ns:AarhusTrafficData186979.\n" + 
+				"		?p1 a ct:CongestionLevel.\n" + 
 				"	}\n" + 
-				"	FILTER (((?lat2-?lat1)*(?lat2-?lat1)+(?lon2-?lon1)*(?lon2-?lon1))<0.1)\n" + 
-				"}";
+				"	FILTER(?v1>= -1)\n" + 
+				"}\n" + 
+				"### GROUP BY ?obId1 \n" + 
+				"HAVING (count(?v1) >3)";
 //		String queryStr = "PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#>\n" + 
 //				"PREFIX iotsn: <http://iot.soton.ac.uk/smarthome/sensor#>\n" + 
 //				"PREFIX iot: <http://purl.oclc.org/NET/iot#>\n" + 

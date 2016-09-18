@@ -1,0 +1,17 @@
+### negation not supported yet
+PREFIX sao: <http://purl.oclc.org/NET/sao/>
+PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#>
+PREFIX ct: 	<http://www.insight-centre.org/citytraffic#>
+PREFIX ns: 	<http://www.insight-centre.org/dataset/SampleEventService#>
+
+SELECT ?obId1
+FROM NAMED WINDOW :weather ON <http://www.insight-centre.org/dataset/SampleEventService#AarhusWeatherData0> [RANGE 3s]
+WHERE {
+	WINDOW :weather {
+		?obId1 a ssn:Observation;
+			ssn:observedProperty ?p1;
+			sao:hasValue ?v1;
+			ssn:observedBy ns:AarhusWeatherData0.
+	}
+	###Filter (!bound(?obId2))
+}
