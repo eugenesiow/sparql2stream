@@ -215,25 +215,34 @@ public class test {
 				"PREFIX ct: 	<http://www.insight-centre.org/citytraffic#>\n" + 
 				"PREFIX ns: 	<http://www.insight-centre.org/dataset/SampleEventService#>\n" + 
 				"\n" + 
-				"SELECT ?v1 ?v2\n" + 
-				"FROM NAMED WINDOW :parking1 ON <http://www.insight-centre.org/dataset/SampleEventService#AarhusParkingDataKALKVAERKSVEJ> [RANGE 3s]\n" + 
-				"FROM NAMED WINDOW :parking2 ON <http://www.insight-centre.org/dataset/SampleEventService#AarhusParkingDataSKOLEBAKKEN> [RANGE 3s]\n" + 
+				"SELECT ?lat1 ?lon1 ?lat2 ?lon2 ?v1 ?v2\n" + 
+				"FROM NAMED WINDOW :pollution1 ON <http://www.insight-centre.org/dataset/SampleEventService#AarhusPollutionData201399> [RANGE 3s]\n" + 
+				"FROM NAMED WINDOW :pollution2 ON <http://www.insight-centre.org/dataset/SampleEventService#AarhusPollutionData197626> [RANGE 3s]\n" + 
+				"FROM NAMED <http://www.insight-centre.org/dataset/SampleEventService#SensorRepository>\n" + 
 				"WHERE {\n" + 
-				"	WINDOW :parking1 {\n" + 
+				"	GRAPH ns:SensorRepository {\n" + 
+				"		?p1 ssn:isPropertyOf ?foi1.\n" + 
+				"		?foi1 ct:hasStartLatitude ?lat1;\n" + 
+				"			ct:hasStartLongitude ?lon1.\n" + 
+				"	}\n" + 
+				"	GRAPH ns:SensorRepository {\n" + 
+				"		?p2 ssn:isPropertyOf ?foi2.\n" + 
+				"		?foi2 ct:hasStartLatitude ?lat2;\n" + 
+				"			ct:hasStartLongitude ?lon2.\n" + 
+				"	}\n" + 
+				"	WINDOW :pollution1 {\n" + 
 				"		?obId1 a ssn:Observation;\n" + 
 				"			ssn:observedProperty ?p1;\n" + 
 				"			sao:hasValue ?v1;\n" + 
-				"			ssn:observedBy ns:AarhusParkingDataKALKVAERKSVEJ.\n" + 
-				"		?p1 a ct:ParkingVacancy.\n" + 
+				"			ssn:observedBy ns:AarhusPollutionData201399.\n" + 
 				"	}\n" + 
-				"	WINDOW :parking2 {\n" + 
+				"	WINDOW :pollution2 {\n" + 
 				"		?obId2 a ssn:Observation;\n" + 
 				"			ssn:observedProperty ?p2;\n" + 
 				"			sao:hasValue ?v2;\n" + 
-				"			ssn:observedBy ns:AarhusParkingDataSKOLEBAKKEN.\n" + 
-				"		?p2 a ct:ParkingVacancy.\n" + 
+				"			ssn:observedBy ns:AarhusPollutionData197626.\n" + 
 				"	}\n" + 
-				"	FILTER(?v1<1||?v2<1)\n" + 
+				"	# BIND (?v1+?v2) as ?sumOfAPI\n" + 
 				"}";
 //		String queryStr = "PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#>\n" + 
 //				"PREFIX iotsn: <http://iot.soton.ac.uk/smarthome/sensor#>\n" + 
