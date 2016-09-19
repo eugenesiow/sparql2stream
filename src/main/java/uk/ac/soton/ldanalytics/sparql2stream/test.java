@@ -210,27 +210,31 @@ public class test {
 //				"		?p2 a ct:CongestionLevel.\n" + 
 //				"	}\n" + 
 //				"}";
-		String queryStr = "### ?obId1 should be projected, however we cannot project it in this query as it demands ?obId1 to be grouped, which makes the semantics wrong.\n" + 
-				"### as a result the latency cannot be evaluated.\n" + 
-				"PREFIX sao: <http://purl.oclc.org/NET/sao/>\n" + 
+		String queryStr = "PREFIX sao: <http://purl.oclc.org/NET/sao/>\n" + 
 				"PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#>\n" + 
 				"PREFIX ct: 	<http://www.insight-centre.org/citytraffic#>\n" + 
 				"PREFIX ns: 	<http://www.insight-centre.org/dataset/SampleEventService#>\n" + 
 				"\n" + 
-				"SELECT (count(?v1) as ?obCnt) \n" + 
-				"FROM NAMED WINDOW :traffic ON <http://www.insight-centre.org/dataset/SampleEventService#AarhusTrafficData186979> [RANGE 3s]\n" + 
+				"SELECT ?v1 ?v2\n" + 
+				"FROM NAMED WINDOW :parking1 ON <http://www.insight-centre.org/dataset/SampleEventService#AarhusParkingDataKALKVAERKSVEJ> [RANGE 3s]\n" + 
+				"FROM NAMED WINDOW :parking2 ON <http://www.insight-centre.org/dataset/SampleEventService#AarhusParkingDataSKOLEBAKKEN> [RANGE 3s]\n" + 
 				"WHERE {\n" + 
-				"	WINDOW :traffic {\n" + 
+				"	WINDOW :parking1 {\n" + 
 				"		?obId1 a ssn:Observation;\n" + 
 				"			ssn:observedProperty ?p1;\n" + 
 				"			sao:hasValue ?v1;\n" + 
-				"			ssn:observedBy ns:AarhusTrafficData186979.\n" + 
-				"		?p1 a ct:CongestionLevel.\n" + 
+				"			ssn:observedBy ns:AarhusParkingDataKALKVAERKSVEJ.\n" + 
+				"		?p1 a ct:ParkingVacancy.\n" + 
 				"	}\n" + 
-				"	FILTER(?v1>= -1)\n" + 
-				"}\n" + 
-				"### GROUP BY ?obId1 \n" + 
-				"HAVING (count(?v1) >3)";
+				"	WINDOW :parking2 {\n" + 
+				"		?obId2 a ssn:Observation;\n" + 
+				"			ssn:observedProperty ?p2;\n" + 
+				"			sao:hasValue ?v2;\n" + 
+				"			ssn:observedBy ns:AarhusParkingDataSKOLEBAKKEN.\n" + 
+				"		?p2 a ct:ParkingVacancy.\n" + 
+				"	}\n" + 
+				"	FILTER(?v1<1||?v2<1)\n" + 
+				"}";
 //		String queryStr = "PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#>\n" + 
 //				"PREFIX iotsn: <http://iot.soton.ac.uk/smarthome/sensor#>\n" + 
 //				"PREFIX iot: <http://purl.oclc.org/NET/iot#>\n" + 

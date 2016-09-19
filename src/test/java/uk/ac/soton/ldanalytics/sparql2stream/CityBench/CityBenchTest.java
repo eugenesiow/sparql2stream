@@ -29,7 +29,7 @@ import uk.ac.soton.ldanalytics.sparql2stream.util.StreamFormatUtil;
  */
 public class CityBenchTest {
 
-	String[] testSet = {"q1","q2","q3","q4","q5","q6"};
+	String[] testSet = {"q1","q2","q3","q4","q5","q6","q7","q9"};
 	
 	@Test
 	public void testQueryGeneration() {
