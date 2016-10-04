@@ -14,6 +14,7 @@ import uk.ac.soton.ldanalytics.sparql2sql.model.RdfTableMapping;
 import uk.ac.soton.ldanalytics.sparql2sql.model.RdfTableMappingJena;
 import uk.ac.soton.ldanalytics.sparql2sql.model.SparqlOpVisitor;
 import uk.ac.soton.ldanalytics.sparql2sql.util.SQLFormatter;
+import uk.ac.soton.ldanalytics.sparql2stream.CityBench.PollutionStream;
 import uk.ac.soton.ldanalytics.sparql2stream.CityBench.TrafficStream;
 import uk.ac.soton.ldanalytics.sparql2stream.CityBench.UserLocationStream;
 import uk.ac.soton.ldanalytics.sparql2stream.CityBench.WeatherStream;
@@ -28,7 +29,7 @@ import com.espertech.esper.client.EPStatement;
 
 public class CepEngineCityBench {
 	public static void main(String[] args) {
-		testQ5();
+		testQ10();
 	}
 	
 	public static void testQ1() {
@@ -175,6 +176,42 @@ public class CepEngineCityBench {
         
         //shutdown
         AarhusTrafficData158505.shutdown();
+        epService.destroy();
+	}
+	
+	public static void testQ10() {
+		ConfigurationDBRef dbConfig = new ConfigurationDBRef();
+		dbConfig.setDriverManagerConnection("org.h2.Driver",
+		                                    "jdbc:h2:./dataset/CityBench", 
+		                                    "sa", 
+		                                    "");
+
+		Configuration engineConfig = new Configuration();
+		engineConfig.addDatabaseReference("SensorRepository", dbConfig);
+		
+		EPServiceProvider epService = EPServiceProviderManager.getProvider("engine_test",engineConfig);
+		PollutionStream AarhusPollutionData201399 = new PollutionStream(epService,"AarhusPollutionData201399");
+		AarhusPollutionData201399.setupSourceFile("streams/AarhusPollutionData201399.stream");
+		PollutionStream AarhusPollutionData197626 = new PollutionStream(epService,"AarhusPollutionData197626");
+		AarhusPollutionData197626.setupSourceFile("streams/AarhusPollutionData197626.stream");
+//		String stmt = getStatement("q10");
+		String stmt = null;
+		try {
+			stmt = FileUtils.readFileToString(new File("Queries/CityBench/q10.epl"));
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+        EPStatement statement = epService.getEPAdministrator().createEPL(stmt);
+        statement.addListener(new SimpleQueryListener());
+        
+        for(int i=0;i<100;i++) {
+        	AarhusPollutionData201399.sendEvent();
+        	AarhusPollutionData197626.sendEvent();
+        }
+        
+        //shutdown
+        AarhusPollutionData201399.shutdown();
+        AarhusPollutionData197626.shutdown();
         epService.destroy();
 	}
 }
