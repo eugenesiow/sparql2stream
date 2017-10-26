@@ -1,6 +1,9 @@
 # sparql2stream
 sparql2sql implementation for streams with Complex Event Processing (CEP) engines. Currently supports translation from SPARQL to [Event Processing Language (EPL)](http://www.espertech.com/esper/release-5.2.0/esper-reference/html/) for the Esper CEP engine via S2SML mappings.
 
+### RSP-QL
+sparql2stream supports [RSP-QL](https://github.com/streamreasoning/RSP-QL) in the RSP-QL [branch](https://github.com/eugenesiow/sparql2stream/tree/RSP-QL) of the code.
+
 ### Transforming Linked Sensor Data from RDF to CSV 
 To transform the LSD from RDF to CSV, see the tool provided at https://github.com/eugenesiow/lsd-ETL.
 
